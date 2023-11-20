@@ -3,7 +3,6 @@ boolean gameOver; // this will become false when the game starts
 //Score for each player - this will be stored in the player object class
 import processing.sound.*;
 SoundFile file;
-BeatDetector beat;
 Amplitude amp;
 AudioIn in;
 
@@ -22,8 +21,6 @@ when the game gets reset after finishing a level.    */
   
   file = new SoundFile(this, "cabprerec.mp3");
   file.play();
-  
-  beat = new BeatDetector(this);
   
   amp = new Amplitude(this);
   
@@ -46,30 +43,14 @@ void draw(){
   
   else if (gameOver == false){
     
-    int i = 0;
-    if (file.isPlaying()) {
-      i++;
-      //println("File is still playing after " + i + " seconds");
-    }
-    
-    //println(beat.isBeat());
-    println(amp.analyze());
+
     loudness = amp.analyze();
     
+
+    fill(0);
+    text(loudness * 500, 100, 100);
     
-   /* if (beat.isBeat()){
-      println("yes");
-      loudness = 0;
-    
-    } else{
-      println("no");
-    
-      loudness = 100;
-    
-    }
-    */
-    fill(loudness);
-    text(loudness, 100, 100);
+    fill(loudness * 500);
     rect(100, 100, 300, 300);
     
   }
