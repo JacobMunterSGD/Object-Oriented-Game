@@ -4,6 +4,8 @@ boolean gameOver; // this will become false when the game starts
 import processing.sound.*;
 SoundFile file;
 BeatDetector beat;
+Amplitude amp;
+AudioIn in;
 
 float loudness;
 
@@ -20,6 +22,15 @@ when the game gets reset after finishing a level.    */
   
   file = new SoundFile(this, "cabprerec.mp3");
   file.play();
+  
+  beat = new BeatDetector(this);
+  
+  amp = new Amplitude(this);
+  
+  in = new AudioIn(this, 0);
+  in.start();
+  amp.input(in);
+
   
   
 }
@@ -38,12 +49,15 @@ void draw(){
     int i = 0;
     if (file.isPlaying()) {
       i++;
-      println("File is still playing after " + i + " seconds");
+      //println("File is still playing after " + i + " seconds");
     }
     
-    beat = new BeatDetector(this);
+    //println(beat.isBeat());
+    println(amp.analyze());
+    loudness = amp.analyze();
     
-    if (beat.isBeat()){
+    
+   /* if (beat.isBeat()){
       println("yes");
       loudness = 0;
     
@@ -53,10 +67,12 @@ void draw(){
       loudness = 100;
     
     }
+    */
     fill(loudness);
     rect(100, 100, 300, 300);
-  
+    
   }
+  
 
 
 }
