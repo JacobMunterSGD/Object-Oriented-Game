@@ -29,7 +29,7 @@ when the game gets reset after finishing a level.    */
   
   in = new AudioIn(this, 0);
   in.start();
-  amp.input(in);
+  amp.input(file);
 
   
   
@@ -69,6 +69,7 @@ void draw(){
     }
     */
     fill(loudness);
+    text(loudness, 100, 100);
     rect(100, 100, 300, 300);
     
   }
