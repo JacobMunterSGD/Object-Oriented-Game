@@ -3,14 +3,18 @@ boolean gameOver; // this will become false when the game starts
 //Score for each player - this will be stored in the player object class
 import processing.sound.*;
 SoundFile file;
+BeatDetector beat;
+
+float loudness;
+
+boolean isBeat;
 
 void setup(){
   
   size(1280, 1024);
   
   /*Set all the variables to whatever you want them to be - this will be a different function, for
-when the game gets reset after finishing a level.
-Setup the background, and all necessary beginning graphics for the title screen    */
+when the game gets reset after finishing a level.    */
 
   gameOver = false;
   
@@ -21,13 +25,36 @@ Setup the background, and all necessary beginning graphics for the title screen 
 }
 
 void draw(){
+  
+  background(255);
 
-  if (gameOver = true){
+  if (gameOver == true){
+  
+  
+  }
+  
+  else if (gameOver == false){
     
-  
-  } else if (gameOver = false){
-  
-  
+    int i = 0;
+    if (file.isPlaying()) {
+      i++;
+      println("File is still playing after " + i + " seconds");
+    }
+    
+    beat = new BeatDetector(this);
+    
+    if (beat.isBeat()){
+      println("yes");
+      loudness = 0;
+    
+    } else{
+      println("no");
+    
+      loudness = 100;
+    
+    }
+    fill(loudness);
+    rect(100, 100, 300, 300);
   
   }
 
