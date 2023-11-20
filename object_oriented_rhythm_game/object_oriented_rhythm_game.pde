@@ -1,6 +1,8 @@
-boolean gameOver = true; // this will become false when the game starts
+boolean gameOver; // this will become false when the game starts
 //An array for the notes for each player
 //Score for each player - this will be stored in the player object class
+import processing.sound.*;
+SoundFile file;
 
 void setup(){
   
@@ -10,14 +12,18 @@ void setup(){
 when the game gets reset after finishing a level.
 Setup the background, and all necessary beginning graphics for the title screen    */
 
-   gameOver = false;
-
+  gameOver = false;
+  
+  file = new SoundFile(this, "cabprerec.mp3");
+  file.play();
+  
+  
 }
 
-void Draw(){
+void draw(){
 
   if (gameOver = true){
-  
+    
   
   } else if (gameOver = false){
   
