@@ -6,18 +6,9 @@ import processing.sound.*;
 SoundFile file;    // the sound file
 Amplitude amp;     // how the sound file is analyzed
 AudioIn in;        // what audio is going into the amplitude
-
 float loudness;    // how loud the audio is at the moment
 
 int test = 0;
-
-
-SoundFile file2;    // the sound file
-Amplitude amp2;     // how the sound file is analyzed
-AudioIn in2;        // what audio is going into the amplitude
-
-float loudness2;    // how loud the audio is at the moment
-
 
 
 void setup(){
@@ -41,53 +32,42 @@ void draw(){
 
   if (gameOver == true){
   
-    fill(0);
+    /*fill(0);
     textSize(100);
-    text("loading", 600, 600);
+    text("loading", 600, 600);*/
     
-    file = new SoundFile(this, "cabprerec.mp3");
+    file = new SoundFile(this, "song1-justmelody.wav");
     amp = new Amplitude(this);
     in = new AudioIn(this, 0);
     in.start();
     amp.input(file);
     file.rate(1);
     
-    file2 = new SoundFile(this, "cabprerec.mp3");
-    amp2 = new Amplitude(this);
-    in2 = new AudioIn(this, 0);
-    in2.start();
-    amp2.input(file);
-    file.rate(1);
     
     
-    file.play();
-    delay(3000);
+    
+    
     file.play();
     gameOver = false;
-    
+
   }
   
   else if (gameOver == false){
     
 
     loudness = amp.analyze();
-    
-    loudness2 = amp2.analyze();
+
     
 
     fill(0);
     text(loudness, 100, 100);
     
-    text(loudness2, 500, 100);
-    
     // note reference song
     fill(loudness * 500);
     rect(100, 100, 300, 300);
     
-    fill(loudness2 * 500);
-    rect(500, 100, 300, 300);
     
-    if (loudness > .5){
+    if (loudness > .8){
       
       println(test);
       println(file.positionFrame());
