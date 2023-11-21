@@ -10,6 +10,7 @@ AudioIn in;        // what audio is going into the amplitude
 float loudness;    // how loud the audio is at the moment
 int test = 0;
 
+ArrayList<Notes> notesP1 = new ArrayList<Notes>();
 
 void setup(){
   
@@ -22,8 +23,6 @@ void setup(){
 
   gameOver = true;
   
-  
-  
 }
 
 void draw(){
@@ -34,15 +33,24 @@ void draw(){
     
     setUpGame("song1-justmelody.wav");
     
-    
-
   }
   
   else if (gameOver == false){
     
 
     loudness = amp.analyze();    
-    testingFunction();
+    //testingFunction();
+    
+    for (int i = notesP1.size() - 1; i >= 0; i--){
+
+      notesP1.get(i).update();
+      notesP1.get(i).display();
+      
+      if (notesP1.get(i).notesP1.y > height){
+        notesP1.remove(notesP1.get(i));
+      } 
+    
+    }
     
   }
 
@@ -82,6 +90,17 @@ void testingFunction(){
     }    
 
 }
+
+void keyPressed(){
+
+  if (key == 'd'){
+  
+    notesP1.add(new Notes(int(random(1, 4)), 1));
+  
+  }
+}
+
+
 
 
 /*
@@ -129,20 +148,5 @@ Player buttons class
 
 Notes class
 
-Constructor
-    Add this note to the array of notes
 
-  Function to display
-  
-  Function to check position of a note
-    Checks where it is, when this function is ran in draw, it will run it for each note in
-    the array
-
-Particle Class
-
-  Constructor
-    Add the array of particles
-
-  Move
-    Move the arrays with some sort of physics thing - fly outwards, then slowly fade out
 */
