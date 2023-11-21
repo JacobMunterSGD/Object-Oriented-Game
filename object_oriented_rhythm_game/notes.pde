@@ -19,17 +19,20 @@ Particle Class
 class Notes{
   
   PVector pos;
-  PVector speed;
+  float speed;
+  int player;
 
-  Notes(int x, float speed){
+  Notes(int x, float s, int p){
     
     pos = new PVector(x * 100, 0);
+    player = p;
+    speed = s;
   
   }
   
   void update(){
   
-    pos.y += 1;
+    pos.y += speed;
   
   }
   

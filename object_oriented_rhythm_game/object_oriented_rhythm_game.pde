@@ -8,7 +8,7 @@ Amplitude amp;     // how the sound file is analyzed
 AudioIn in;        // what audio is going into the amplitude
 
 float loudness;    // how loud the audio is at the moment
-int test = 0;
+int test = 0;      // test variable to see how many times the audio has spiked - not using in the final program
 
 ArrayList<Notes> notesP1 = new ArrayList<Notes>();
 
@@ -40,18 +40,26 @@ void draw(){
 
     loudness = amp.analyze();    
     //testingFunction();
+    updateNotes(notesP1);
     
-    for (int i = notesP1.size() - 1; i >= 0; i--){
+    
+  }
 
+}
+
+void updateNotes(ArrayList n){
+
+  for (int i = n.size() - 1; i >= 0; i--){
+      
+    if (n == notesP1){
       notesP1.get(i).update();
       notesP1.get(i).display();
       
-      if (notesP1.get(i).notesP1.y > height){
+      if (notesP1.get(i).pos.y > height){
         notesP1.remove(notesP1.get(i));
       } 
     
     }
-    
   }
 
 }
@@ -95,7 +103,7 @@ void keyPressed(){
 
   if (key == 'd'){
   
-    notesP1.add(new Notes(int(random(1, 4)), 1));
+    notesP1.add(new Notes(int(random(1, 4)), 1, 1));
   
   }
 }
@@ -133,20 +141,5 @@ location (of the three possible slots) for it to fall to
       Update the score display
       Check if the song has ended
       Update any other visuals
-
-Player buttons class
-  
-  Constructor
-    Is this player one or two?
-      Set up the player accordingly
-    
-  Input
-    Check which of the 3 inputs the player has done, then check the distance from the notes in that column, and update accordingly
-
-  Display
-    Draw the buttons
-
-Notes class
-
 
 */
