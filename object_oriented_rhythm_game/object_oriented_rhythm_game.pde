@@ -6,8 +6,8 @@ import processing.sound.*;
 SoundFile file;    // the sound file
 Amplitude amp;     // how the sound file is analyzed
 AudioIn in;        // what audio is going into the amplitude
-float loudness;    // how loud the audio is at the moment
 
+float loudness;    // how loud the audio is at the moment
 int test = 0;
 
 
@@ -18,9 +18,9 @@ void setup(){
   
   
   /*Set all the variables to whatever you want them to be - this will be a different function, for
-when the game gets reset after finishing a level.    */
+  when the game gets reset after finishing a level.    */
 
-  gameOver = true;    // change this later
+  gameOver = true;
   
   
   
@@ -31,34 +31,40 @@ void draw(){
   background(255);
 
   if (gameOver == true){
-  
-    /*fill(0);
-    textSize(100);
-    text("loading", 600, 600);*/
     
-    file = new SoundFile(this, "song1-justmelody.wav");
-    amp = new Amplitude(this);
-    in = new AudioIn(this, 0);
-    in.start();
-    amp.input(file);
-    file.rate(1);
+    setUpGame("song1-justmelody.wav");
     
     
-    
-    
-    
-    file.play();
-    gameOver = false;
 
   }
   
   else if (gameOver == false){
     
 
-    loudness = amp.analyze();
-
+    loudness = amp.analyze();    
+    testingFunction();
     
+  }
 
+}
+
+void setUpGame(String song){
+
+    file = new SoundFile(this, song);
+    amp = new Amplitude(this);
+    in = new AudioIn(this, 0);
+    
+    in.start();
+    amp.input(file);
+    file.rate(1);
+    
+    file.play();
+    gameOver = false;
+
+}
+
+void testingFunction(){
+  
     fill(0);
     text(loudness, 100, 100);
     
@@ -73,17 +79,10 @@ void draw(){
       println(file.positionFrame());
       test ++;
     
-    }
-    
-    
-    
-  }
-  
-
-
-
+    }    
 
 }
+
 
 /*
 If gameOver is true
