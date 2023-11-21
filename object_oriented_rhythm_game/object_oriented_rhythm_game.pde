@@ -1,33 +1,36 @@
 boolean gameOver; // this will become false when the game starts
 //An array for the notes for each player
 //Score for each player - this will be stored in the player object class
+
 import processing.sound.*;
-SoundFile file;
-Amplitude amp;
-AudioIn in;
+SoundFile file;    // the sound file
+Amplitude amp;     // how the sound file is analyzed
+AudioIn in;        // what audio is going into the amplitude
 
-float loudness;
+float loudness;    // how loud the audio is at the moment
 
-boolean isBeat;
+int test = 0;
+
+
+SoundFile file2;    // the sound file
+Amplitude amp2;     // how the sound file is analyzed
+AudioIn in2;        // what audio is going into the amplitude
+
+float loudness2;    // how loud the audio is at the moment
+
+
 
 void setup(){
   
   size(1280, 1024);
+  background(255);
+  
   
   /*Set all the variables to whatever you want them to be - this will be a different function, for
 when the game gets reset after finishing a level.    */
 
-  gameOver = false;
+  gameOver = true;    // change this later
   
-  file = new SoundFile(this, "cabprerec.mp3");
-  file.play();
-  
-  amp = new Amplitude(this);
-  
-  in = new AudioIn(this, 0);
-  in.start();
-  amp.input(file);
-
   
   
 }
@@ -38,7 +41,30 @@ void draw(){
 
   if (gameOver == true){
   
-  
+    fill(0);
+    textSize(100);
+    text("loading", 600, 600);
+    
+    file = new SoundFile(this, "cabprerec.mp3");
+    amp = new Amplitude(this);
+    in = new AudioIn(this, 0);
+    in.start();
+    amp.input(file);
+    file.rate(1);
+    
+    file2 = new SoundFile(this, "cabprerec.mp3");
+    amp2 = new Amplitude(this);
+    in2 = new AudioIn(this, 0);
+    in2.start();
+    amp2.input(file);
+    file.rate(1);
+    
+    
+    file.play();
+    delay(3000);
+    file.play();
+    gameOver = false;
+    
   }
   
   else if (gameOver == false){
@@ -46,15 +72,35 @@ void draw(){
 
     loudness = amp.analyze();
     
+    loudness2 = amp2.analyze();
+    
 
     fill(0);
-    text(loudness * 500, 100, 100);
+    text(loudness, 100, 100);
     
+    text(loudness2, 500, 100);
+    
+    // note reference song
     fill(loudness * 500);
     rect(100, 100, 300, 300);
     
+    fill(loudness2 * 500);
+    rect(500, 100, 300, 300);
+    
+    if (loudness > .5){
+      
+      println(test);
+      println(file.positionFrame());
+      test ++;
+    
+    }
+    
+    
+    
   }
   
+
+
 
 
 }
