@@ -12,11 +12,14 @@ int test = 0;      // test variable to see how many times the audio has spiked -
 
 ArrayList<Notes> notesP1 = new ArrayList<Notes>();
 
+Player player1;
+
 void setup(){
   
   size(1280, 1024);
   background(255);
   
+  player1 = new Player(1, 'z', 'x', 'c');
   
   /*Set all the variables to whatever you want them to be - this will be a different function, for
   when the game gets reset after finishing a level.    */
@@ -36,6 +39,8 @@ void draw(){
   }
   
   else if (gameOver == false){
+    
+    player1.display();
     
 
     loudness = amp.analyze();    
@@ -106,6 +111,23 @@ void keyPressed(){
     notesP1.add(new Notes(int(random(1, 4)), 1, 1));
   
   }
+  
+  if (key == player1.button1){
+  
+    player1.button1Down = true;
+  
+  }
+}
+
+
+void keyReleased(){
+
+  if (key == player1.button1){
+  
+    player1.button1Down = false;
+  
+  }
+
 }
 
 

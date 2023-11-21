@@ -20,12 +20,12 @@ class Notes{
   
   PVector pos;
   float speed;
-  int player;
+  int whichPlayer;
 
   Notes(int x, float s, int p){
     
     pos = new PVector(x * 100, 0);
-    player = p;
+    whichPlayer = p;
     speed = s;
   
   }
