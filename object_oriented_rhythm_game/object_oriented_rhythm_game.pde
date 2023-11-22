@@ -19,7 +19,7 @@ void setup(){
   size(1280, 1024);
   background(255);
   
-  player1 = new Player(1, 'z', 'x', 'c');
+  player1 = new Player(1);
   
   /*Set all the variables to whatever you want them to be - this will be a different function, for
   when the game gets reset after finishing a level.    */
@@ -45,7 +45,15 @@ void draw(){
 
     loudness = amp.analyze();    
     //testingFunction();
+    
+    collision(notesP1);
+    
     updateNotes(notesP1);
+    
+    text(player1.score, 100, 100);
+    
+    
+    
     
     
   }
@@ -69,6 +77,24 @@ void updateNotes(ArrayList n){
 
 }
 
+void collision(ArrayList n){
+
+  for (int i = n.size() - 1; i >= 0; i--){
+    if (notesP1.get(i).column == 1 && player1.button1Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 110, float(840)) < 40 + notesP1.get(i).size / 2){
+        
+        notesP1.remove(notesP1.get(i));
+        player1.score ++;
+      
+      }
+      
+    if(notesP1.get(i).column == 1 && player1.button1Down == true && !(dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 110, float(840)) < 40 + notesP1.get(i).size / 2)){
+    
+      //player1.score --;
+      
+    }
+  }
+}
+
 void setUpGame(String song){
 
     file = new SoundFile(this, song);
@@ -81,6 +107,8 @@ void setUpGame(String song){
     
     file.play();
     gameOver = false;
+    
+    player1.score = 0;
 
 }
 
@@ -117,15 +145,32 @@ void keyPressed(){
     player1.button1Down = true;
   
   }
+  
+  if (key == player1.button2){
+  
+    player1.button2Down = true;
+  
+  }
+  if (key == player1.button3){
+  
+    player1.button3Down = true;
+  
+  }
 }
 
 
 void keyReleased(){
 
   if (key == player1.button1){
-  
     player1.button1Down = false;
+  }
   
+  if (key == player1.button2){
+    player1.button2Down = false;
+  }
+  
+  if (key == player1.button3){
+    player1.button3Down = false;
   }
 
 }

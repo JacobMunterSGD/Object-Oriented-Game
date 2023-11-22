@@ -21,12 +21,17 @@ class Notes{
   PVector pos;
   float speed;
   int whichPlayer;
+  int column;
+  
+  int size = 30;
 
   Notes(int x, float s, int p){
     
-    pos = new PVector(x * 100, 0);
+    pos = new PVector((x * 200) - 80, 0);
     whichPlayer = p;
     speed = s;
+    column = x;
+    println(column);
   
   }
   
@@ -39,7 +44,7 @@ class Notes{
   void display(){
     
     fill(0);
-    ellipse(pos.x, pos.y, 30, 30);
+    ellipse(pos.x, pos.y, size, size);
   
   }
 
