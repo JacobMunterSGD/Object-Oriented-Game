@@ -16,6 +16,7 @@ class Player{
   
   char button1;
   boolean button1Down = false;
+  float button1Cooldown = 30;
   
   char button2;
   boolean button2Down = false;

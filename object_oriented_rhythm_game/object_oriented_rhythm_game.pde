@@ -48,9 +48,12 @@ void draw(){
     
     collision(notesP1);
     
+    cooldown(player1.button1Cooldown);
+    
     updateNotes(notesP1);
     
     text(player1.score, 100, 100);
+    
     
     
     
@@ -84,15 +87,26 @@ void collision(ArrayList n){
         
         notesP1.remove(notesP1.get(i));
         player1.score ++;
+        player1.button1Cooldown = 30;
+        
       
       }
       
-    if(notesP1.get(i).column == 1 && player1.button1Down == true && !(dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 110, float(840)) < 40 + notesP1.get(i).size / 2)){
+    if(notesP1.get(i).column == 1 && player1.button1Down == true && !(dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 110, float(840)) < 40 + notesP1.get(i).size / 2) && player1.button1Cooldown <= 0){
     
-      //player1.score --;
+      player1.score --;
+      player1.button1Cooldown = 30;
       
     }
   }
+}
+
+void cooldown(float x){
+
+  if (x > 0){
+    player1.button1Cooldown --;
+  }
+
 }
 
 void setUpGame(String song){
@@ -143,6 +157,7 @@ void keyPressed(){
   if (key == player1.button1){
   
     player1.button1Down = true;
+    
   
   }
   
