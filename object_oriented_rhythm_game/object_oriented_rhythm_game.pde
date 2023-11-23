@@ -59,6 +59,7 @@ void draw(){
     
     text(player1.score, 100, 100);
     
+    //Notes[] ntemp = notesP1.toArray();
     collision(notesP1);
     
     dropNotes();
@@ -106,7 +107,7 @@ void updateNotes(ArrayList n){
 }
 
 void collision(ArrayList n){
-
+  //println(n[0]);
   for (int i = n.size() - 1; i >= 0; i--){
     if (notesP1.get(i).column == 1 && player1.button1Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 110, float(840)) < 40 + notesP1.get(i).size / 2){
         
@@ -176,15 +177,15 @@ void keyPressed(){
     notesP1.add(new Notes(int(random(1, 4)), 5, 1));
   }
   
-  if (keyCode == CONTROL){
+  if (keyCode == SHIFT){
     player1.button1Down = true;
   }
   
-  if (keyCode == ALT){
+  if (key == 'z'){
     player1.button2Down = true;
   }
   
-  if (key == ' '){
+  if (key == 'x'){
     player1.button3Down = true;
   }
 }
@@ -192,15 +193,15 @@ void keyPressed(){
 
 void keyReleased(){
 
-  if (keyCode == CONTROL){
+  if (keyCode == SHIFT){
     player1.button1Down = false;
   }
   
-  if (keyCode == ALT){
+  if (key == 'z'){
     player1.button2Down = false;
   }
   
-  if (key == ' '){
+  if (key == 'x'){
     player1.button3Down = false;
   }
 
