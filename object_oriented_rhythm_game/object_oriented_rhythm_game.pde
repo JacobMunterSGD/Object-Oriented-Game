@@ -46,7 +46,7 @@ void draw(){
     loudness = amp.analyze();    
     //testingFunction();
     
-    collision(notesP1);
+    
     
     cooldown(player1.button1Cooldown);
     
@@ -54,7 +54,17 @@ void draw(){
     
     text(player1.score, 100, 100);
     
+    collision(notesP1);    // IM WORKING ON MAKING THE COLLISIONS NOT HAVE AN ERROR - IT'S A PROBLEM WITH THE ARRAY LIST, AND WHEN THINGS ARE BEING REMOVED ))))))))))))))))))))))))))))))))))))))))
     
+    for (int i = notesP1.size() - 1; i >= 0; i--){
+      
+      if (notesP1.get(i).toBeDeleted == true){
+      
+        notesP1.remove(notesP1.get(i));
+        
+      }
+      
+    }
     
     
     
@@ -72,8 +82,9 @@ void updateNotes(ArrayList n){
       notesP1.get(i).display();
       
       if (notesP1.get(i).pos.y > height){
-        notesP1.remove(notesP1.get(i));
-      } 
+        //notesP1.remove(notesP1.get(i));
+        notesP1.get(i).toBeDeleted = true;
+      }
     
     }
   }
@@ -85,7 +96,8 @@ void collision(ArrayList n){
   for (int i = n.size() - 1; i >= 0; i--){
     if (notesP1.get(i).column == 1 && player1.button1Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 110, float(840)) < 40 + notesP1.get(i).size / 2){
         
-        notesP1.remove(notesP1.get(i));
+        //notesP1.remove(notesP1.get(i));
+        notesP1.get(i).toBeDeleted = true;
         player1.score ++;
         player1.button1Cooldown = 30;
         
@@ -150,7 +162,7 @@ void keyPressed(){
 
   if (key == 'd'){
   
-    notesP1.add(new Notes(int(random(1, 4)), 1, 1));
+    notesP1.add(new Notes(int(random(1, 4)), 5, 1));
   
   }
   

@@ -22,6 +22,7 @@ class Notes{
   float speed;
   int whichPlayer;
   int column;
+  boolean toBeDeleted = false;
   
   int size = 30;
 
