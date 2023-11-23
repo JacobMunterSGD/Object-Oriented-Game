@@ -12,6 +12,10 @@ int test = 0;      // test variable to see how many times the audio has spiked -
 
 ArrayList<Notes> notesP1 = new ArrayList<Notes>();
 
+float[] song1Array = new float[100];
+
+float timeToNextNote = 60;
+
 Player player1;
 
 void setup(){
@@ -41,12 +45,9 @@ void draw(){
   else if (gameOver == false){
     
     player1.display();
-    
 
     loudness = amp.analyze();    
     //testingFunction();
-    
-    
     
     cooldown(player1.button1Cooldown);
     
@@ -56,6 +57,9 @@ void draw(){
     
     collision(notesP1);
     
+    dropNotes();
+    timeToNextNote --;
+    
     for (int i = notesP1.size() - 1; i >= 0; i--){
       
       if (notesP1.get(i).toBeDeleted == true){
@@ -63,15 +67,22 @@ void draw(){
         notesP1.remove(notesP1.get(i));
         
       }
-      
     }
+  }
+}
+
+void dropNotes(){
+  
+  if (timeToNextNote < 0){
     
-    
-    
+    notesP1.add(new Notes(int(random(1, 4)), 5, 1));
+    timeToNextNote = 60;
     
   }
-
+  
+  
 }
+
 
 void updateNotes(ArrayList n){
 
@@ -84,11 +95,10 @@ void updateNotes(ArrayList n){
       if (notesP1.get(i).pos.y > height){
         //notesP1.remove(notesP1.get(i));
         notesP1.get(i).toBeDeleted = true;
+        
       }
-    
     }
   }
-
 }
 
 void collision(ArrayList n){
