@@ -1,7 +1,3 @@
-boolean gameOver; // this will become false when the game starts
-//An array for the notes for each player
-//Score for each player - this will be stored in the player object class
-
 import processing.sound.*;
 SoundFile file;    // the sound file
 Amplitude amp;     // how the sound file is analyzed
@@ -10,11 +6,17 @@ AudioIn in;        // what audio is going into the amplitude
 float loudness;    // how loud the audio is at the moment
 int test = 0;      // test variable to see how many times the audio has spiked - not using in the final program
 
-ArrayList<Notes> notesP1 = new ArrayList<Notes>();
+boolean gameOver; // this will become false when the game starts
 
-float[] song1Array = new float[100];
+ArrayList<Notes> notesP1 = new ArrayList<Notes>(); //An array for the notes for each player
+
+//float[] song1Array = new float[100];
+
+float[] song1Array = {60, 30, 60, 30, 30, 10, 10, 5, 5};
 
 float timeToNextNote = 60;
+float timeElapsed = 0;
+int spotInArray = 0;
 
 Player player1;
 
@@ -24,6 +26,8 @@ void setup(){
   background(255);
   
   player1 = new Player(1);
+  
+  
   
   /*Set all the variables to whatever you want them to be - this will be a different function, for
   when the game gets reset after finishing a level.    */
@@ -59,6 +63,7 @@ void draw(){
     
     dropNotes();
     timeToNextNote --;
+    timeElapsed ++;
     
     for (int i = notesP1.size() - 1; i >= 0; i--){
       
@@ -74,15 +79,14 @@ void draw(){
 void dropNotes(){
   
   if (timeToNextNote < 0){
-    
-    notesP1.add(new Notes(int(random(1, 4)), 5, 1));
-    timeToNextNote = 60;
+    if (!(spotInArray >= song1Array.length)){
+      notesP1.add(new Notes(int(random(1, 4)), 5, 1));
+      timeToNextNote = song1Array[spotInArray];
+      spotInArray ++;
+    }
     
   }
-  
-  
 }
-
 
 void updateNotes(ArrayList n){
 
@@ -111,7 +115,6 @@ void collision(ArrayList n){
         player1.score ++;
         player1.button1Cooldown = 30;
         
-      
       }
       
     if(notesP1.get(i).column == 1 && player1.button1Down == true && !(dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 110, float(840)) < 40 + notesP1.get(i).size / 2) && player1.button1Cooldown <= 0){
@@ -165,33 +168,24 @@ void testingFunction(){
       test ++;
     
     }    
-
 }
 
 void keyPressed(){
 
   if (key == 'd'){
-  
     notesP1.add(new Notes(int(random(1, 4)), 5, 1));
-  
   }
   
   if (key == player1.button1){
-  
     player1.button1Down = true;
-    
-  
   }
   
   if (key == player1.button2){
-  
     player1.button2Down = true;
-  
   }
+  
   if (key == player1.button3){
-  
     player1.button3Down = true;
-  
   }
 }
 
