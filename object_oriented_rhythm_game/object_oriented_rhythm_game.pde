@@ -54,7 +54,7 @@ void draw(){
     
     text(player1.score, 100, 100);
     
-    collision(notesP1);    // IM WORKING ON MAKING THE COLLISIONS NOT HAVE AN ERROR - IT'S A PROBLEM WITH THE ARRAY LIST, AND WHEN THINGS ARE BEING REMOVED ))))))))))))))))))))))))))))))))))))))))
+    collision(notesP1);
     
     for (int i = notesP1.size() - 1; i >= 0; i--){
       
