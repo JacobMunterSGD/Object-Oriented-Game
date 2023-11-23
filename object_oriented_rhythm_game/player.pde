@@ -14,14 +14,14 @@ class Player{
   
   int whichPlayer;
   
-  char button1;
+  //char button1;
   boolean button1Down = false;
   float button1Cooldown = 30;
   
-  char button2;
+  //char button2;
   boolean button2Down = false;
   
-  char button3;
+  //char button3;
   boolean button3Down = false;
   
   float score;
@@ -30,11 +30,7 @@ class Player{
     
     whichPlayer = wp;
     
-    if (whichPlayer == 1){
-      button1 = 'z';
-      button2 = 'x';
-      button3 = 'c';
-    }
+
   
       
   }

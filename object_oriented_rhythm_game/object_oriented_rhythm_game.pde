@@ -6,9 +6,9 @@ AudioIn in;        // what audio is going into the amplitude
 float loudness;    // how loud the audio is at the moment
 int test = 0;      // test variable to see how many times the audio has spiked - not using in the final program
 
-boolean gameOver; // this will become false when the game starts
+boolean gameOver;  // this will become false when the game starts
 
-ArrayList<Notes> notesP1 = new ArrayList<Notes>(); //An array for the notes for each player
+ArrayList<Notes> notesP1 = new ArrayList<Notes>(); //An arraylist for the notes for each player
 
 //float[] song1Array = new float[100];
 
@@ -176,15 +176,15 @@ void keyPressed(){
     notesP1.add(new Notes(int(random(1, 4)), 5, 1));
   }
   
-  if (key == player1.button1){
+  if (keyCode == CONTROL){
     player1.button1Down = true;
   }
   
-  if (key == player1.button2){
+  if (keyCode == ALT){
     player1.button2Down = true;
   }
   
-  if (key == player1.button3){
+  if (key == ' '){
     player1.button3Down = true;
   }
 }
@@ -192,15 +192,15 @@ void keyPressed(){
 
 void keyReleased(){
 
-  if (key == player1.button1){
+  if (keyCode == CONTROL){
     player1.button1Down = false;
   }
   
-  if (key == player1.button2){
+  if (keyCode == ALT){
     player1.button2Down = false;
   }
   
-  if (key == player1.button3){
+  if (key == ' '){
     player1.button3Down = false;
   }
 
