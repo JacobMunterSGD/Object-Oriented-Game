@@ -24,6 +24,7 @@ class Player{
   
   //char button3;
   boolean button3Down = false;
+  float button3Cooldown = 30;
   
   float score;
 
@@ -51,9 +52,9 @@ class Player{
       //for(int i = 0; i < 600; i += 200){
       
       if (button1Down == true){ 
-          fill(0, 0, 0, 150);
+          fill(0, 0, 0,  100 + player1.button1Cooldown * 3);
         } else {
-          fill(0, 0, 0, 100);
+          fill(0, 0, 0,  100 + player1.button1Cooldown);
         }  
       rect(40, 800, 160, 80);
       

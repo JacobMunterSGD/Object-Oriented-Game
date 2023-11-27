@@ -42,7 +42,7 @@ void draw(){
 
   if (gameOver == true){
     
-    setUpGame("song1-justmelody.wav");
+    
     
   }
   
@@ -55,18 +55,35 @@ void draw(){
     
     cooldown(player1.button1Cooldown);
     cooldown(player1.button2Cooldown);
+    cooldown(player1.button3Cooldown);
     
     updateNotes(notesP1);
     
     text(player1.score, 100, 100);
     
     //Notes[] ntemp = notesP1.toArray();
+    //player1.score = collision(notesP1);
     collision(notesP1);
+    
+    for (int i = notesP1.size() - 1; i >= 0; i--){
+    
+     if (player1.button1Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 110, float(840)) > 40 + notesP1.get(i).size / 2 && player1.button1Cooldown <= 0){
+    
+      println("button down" + player1.button1Cooldown);
+       
+      player1.score --;
+      player1.button1Cooldown = 30;
+      //return -1;
+      }
+    }
+    
     
     dropNotes();
     //println("asdsda" + timeToNextNote);
     timeToNextNote --;
     timeElapsed ++;
+    
+    println(player1.button1Cooldown);
     
     for (int i = notesP1.size() - 1; i >= 0; i--){
       
@@ -116,36 +133,65 @@ void collision(ArrayList n){
     // button 1
     if (notesP1.get(i).column == 1 && player1.button1Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 120, float(840)) < 40 + notesP1.get(i).size / 2){
         
-        //notesP1.remove(notesP1.get(i));
         notesP1.get(i).toBeDeleted = true;
         player1.score ++;
+        
         player1.button1Cooldown = 30;
+        //return 1;
+        
         
       }
       
-    if (player1.button1Down == true && !(dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 110, float(840)) < 40 + notesP1.get(i).size / 2) && player1.button1Cooldown <= 0){
+     /*if (player1.button1Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 110, float(840)) > 40 + notesP1.get(i).size / 2 && player1.button1Cooldown <= 0){
     
+      println("button down" + player1.button1Cooldown);
+       
       player1.score --;
       player1.button1Cooldown = 30;
-      }
+      //return -1;
+      }*/
+      
     // button 2
     if (notesP1.get(i).column == 2 && player1.button2Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 320, float(840)) < 40 + notesP1.get(i).size / 2){
         
-        //notesP1.remove(notesP1.get(i));
         notesP1.get(i).toBeDeleted = true;
         player1.score ++;
         player1.button2Cooldown = 30;
+        //return 1;
         
       }
       
-    if (player1.button2Down == true && !(dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 320, float(840)) < 40 + notesP1.get(i).size / 2) && player1.button2Cooldown <= 0){
+    if (player1.button2Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 320, float(840)) > 40 + notesP1.get(i).size / 2 && player1.button2Cooldown <= 0){
     
       player1.score --;
       player1.button2Cooldown = 30;
+      //return -1;
       
       }
+    // button 3
+    if (notesP1.get(i).column == 3 && player1.button3Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 520, float(840)) < 40 + notesP1.get(i).size / 2){
+        
+        notesP1.get(i).toBeDeleted = true;
+        player1.score ++;
+        player1.button3Cooldown = 30;
+        //return 1;
+        
+      }
+      
+    if (player1.button3Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 520, float(840)) > 40 + notesP1.get(i).size / 2 && player1.button3Cooldown <= 0){
+    
+      player1.score --;
+      player1.button3Cooldown = 30;
+      //return -1;
+      
+      }
+      
+      
     
   }
+  
+  //return 0;
+  
 }
 
 void cooldown(float x){
@@ -155,6 +201,9 @@ void cooldown(float x){
   }
   if (x > 0 && x == player1.button2Cooldown){
     player1.button2Cooldown --;
+  }
+  if (x > 0 && x == player1.button3Cooldown){
+    player1.button3Cooldown --;
   }
 
 }
@@ -211,6 +260,12 @@ void keyPressed(){
   
   if (key == 'x'){
     player1.button3Down = true;
+  }
+  
+  if (key == ' ' && gameOver == true){
+    
+    setUpGame("song1-justmelody.wav");
+  
   }
 }
 
