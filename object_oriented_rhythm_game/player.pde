@@ -20,6 +20,7 @@ class Player{
   
   //char button2;
   boolean button2Down = false;
+  float button2Cooldown = 30;
   
   //char button3;
   boolean button3Down = false;
