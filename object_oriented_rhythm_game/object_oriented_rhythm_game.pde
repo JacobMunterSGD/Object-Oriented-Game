@@ -90,7 +90,6 @@ void dropNotes(){
       println(timeToNextNote);
       spotInArray ++;
     }
-    
   }
 }
 
@@ -128,7 +127,7 @@ void collision(ArrayList n){
     
       player1.score --;
       player1.button1Cooldown = 30;
-      
+      }
     // button 2
     if (notesP1.get(i).column == 2 && player1.button2Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 320, float(840)) < 40 + notesP1.get(i).size / 2){
         
@@ -139,13 +138,13 @@ void collision(ArrayList n){
         
       }
       
-    if (player1.button2Down == true && !(dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 320, float(840)) < 40 + notesP1.get(i).size / 2) && player1.button1Cooldown <= 0){
+    if (player1.button2Down == true && !(dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 320, float(840)) < 40 + notesP1.get(i).size / 2) && player1.button2Cooldown <= 0){
     
       player1.score --;
       player1.button2Cooldown = 30;
       
       }
-    }
+    
   }
 }
 
