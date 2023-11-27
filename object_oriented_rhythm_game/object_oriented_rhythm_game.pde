@@ -12,7 +12,10 @@ ArrayList<Notes> notesP1 = new ArrayList<Notes>(); //An arraylist for the notes 
 
 //float[] song1Array = new float[100];
 
-float[] song1Array = {4, 6, 8, 10, 12, 14, 15, 16, 16.75, 18, 18};
+float[] song1Array = {4, 6, 8, 10, 12, 14, 15, 16, 
+                      16.75, 17.25, 17.75, 18, 18.75, 19.25, 20.5, 20.75, 21, 21.5, 21.75, 22, 22.75, 23.5, 24.75, 25, 25.37, 25.75, 26, 27, 27.12, 27.25, 27.37, 27.75, 28, 29.5, 29.75, 30, 31,
+                      32, 32.25, 33.25, 33.5, 34, 34.25, 35, 35.25, 35.5, 35.75, 36, 36.25, 37.25, 37.5, 38, 38.25, 38.75, 39.25, 39.5, 39.75, 40, 40.25, 41.25, 41.5, 42, 42.25, 43, 43.25, 43.5, 43.75, 44, 44.25, 45.25, 45.5, 46, 46.25, 46.75, 47.25, 47.5, 47.75,
+                      48, 48.12, 48.25, 48.37, 48.5, 48.75, 49, 49.37, 49.75, };
 
 
 
@@ -27,7 +30,7 @@ void setup(){
   size(1280, 1024);
   background(255);
   
-  for (int i = song1Array.length - 1; i >= 0; i--){        // WHY DOESN'T THIS WORK!
+  for (int i = song1Array.length - 1; i >= 0; i--){
     //print(song1Array[i] + "    " );
     song1Array[i] = (song1Array[i] * 60) - 60;
     //print(song1Array[i] + "   ");
@@ -266,7 +269,7 @@ void keyPressed(){
   
   if (key == ' ' && gameOver == true){
     
-    setUpGame("song1-justmelody.wav");
+    setUpGame("song1.wav");
   
   }
 }
