@@ -12,7 +12,7 @@ ArrayList<Notes> notesP1 = new ArrayList<Notes>(); //An arraylist for the notes 
 
 //float[] song1Array = new float[100];
 
-float[] song1Array = {3, 5, 6, 8, 10};
+float[] song1Array = {4, 6, 8, 10, 12, 14, 15, 16, 16.75, 18, 18};
 
 
 
@@ -28,9 +28,9 @@ void setup(){
   background(255);
   
   for (int i = song1Array.length - 1; i >= 0; i--){        // WHY DOESN'T THIS WORK!
-    print(song1Array[i] + "    " );
-    song1Array[i] = song1Array[i] * 60;
-    print(song1Array[i] + "   ");
+    //print(song1Array[i] + "    " );
+    song1Array[i] = (song1Array[i] * 60) - 60;
+    //print(song1Array[i] + "   ");
   }
   
   println(song1Array);
@@ -102,12 +102,12 @@ void draw(){
 void dropNotes(){
   
   if (timeToNextNote <= 0){
-    if (spotInArray < song1Array.length){
+    if (spotInArray < song1Array.length - 1){
       int c = int(random(1, 4));
-      //println(c);
+      println(c);
       notesP1.add(new Notes(c, 13.3, 1));
-      timeToNextNote = (song1Array[spotInArray] - timeElapsed) * 60;
-      //println(timeToNextNote);
+      timeToNextNote = (song1Array[spotInArray] - timeElapsed);
+      println(timeToNextNote);
       spotInArray ++;
     }
   }
