@@ -7,6 +7,7 @@ float loudness;    // how loud the audio is at the moment
 int test = 0;      // test variable to see how many times the audio has spiked - not using in the final program
 
 boolean gameOver;  // this will become false when the game starts
+boolean titleScreen; // this will also become false when the game starts, this is to know what state we're in during the start of the program
 
 ArrayList<Notes> notesP1 = new ArrayList<Notes>(); //An arraylist for the notes for each player
 ArrayList<Notes> notesP2 = new ArrayList<Notes>();
@@ -50,6 +51,7 @@ void setup(){
   when the game gets reset after finishing a level.    */
 
   gameOver = true;
+  titleScreen = true;
   
 }
 
@@ -59,10 +61,20 @@ void draw(){
 
   if (gameOver == true){
     
-    fill(0);
-    textAlign(CENTER);
-    textSize(20);
-    text("press space to start", width/2, height/2);
+    if (titleScreen){
+      
+      fill(0);
+      textAlign(CENTER);
+      textSize(50);
+      text("Object Oriented Rhythm Game", width/2, height/2 - 200);
+      textSize(30);
+      text("Press Space to Start", width/2, height/2 - 50);
+      
+      text("player one uses shift, z, and x", width/4, height/2 + 100);
+      text("player two uses m, comma, and period", width/4*3, height/2 + 100);
+    
+    }
+    
     
   }
   
@@ -85,8 +97,9 @@ void draw(){
     updateNotes(notesP1);
     updateNotes(notesP2);
     
-    text(player1.score, 100, 100);
-    text(player2.score, 900, 100);
+    textSize(50);
+    text(int(player1.score), 0 + 100, 100);
+    text(int(player2.score), width - 100, 100);
     
     //Notes[] ntemp = notesP1.toArray();
     //player1.score = collision(notesP1);
@@ -262,8 +275,16 @@ void setUpGame(String song){
     player2.score = 0;
     
     file.play();
+    
+    notesP1.add(new Notes(30, 0, 1));    // this just makes it so there's always at least one note in each array
+    notesP2.add(new Notes(30, 0, 2));
+    
+    titleScreen = false;
+    
     gameOver = false;
-
+    
+    
+    
 }
 
 void testingFunction(){
