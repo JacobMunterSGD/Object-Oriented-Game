@@ -74,19 +74,27 @@ void draw(){
     loudness = amp.analyze();    
     //testingFunction();
     
-    cooldown(player1.button1Cooldown);
-    cooldown(player1.button2Cooldown);
-    cooldown(player1.button3Cooldown);
+    cooldown(player1.button1Cooldown, player1);
+    cooldown(player1.button2Cooldown, player1);
+    cooldown(player1.button3Cooldown, player1);
+    
+    cooldown(player2.button1Cooldown, player2);
+    cooldown(player2.button2Cooldown, player2);
+    cooldown(player2.button3Cooldown, player2);
     
     updateNotes(notesP1);
+    updateNotes(notesP2);
     
     text(player1.score, 100, 100);
+    text(player2.score, 900, 100);
     
     //Notes[] ntemp = notesP1.toArray();
     //player1.score = collision(notesP1);
-    collision(notesP1, player1);
+    collision(notesP1, player1, 120, 320, 520);
     missCollision(notesP1, player1);
     
+    collision(notesP2, player2, 760, 960, 1160);
+    missCollision(notesP2, player2);
     
     
     dropNotes();
@@ -104,6 +112,15 @@ void draw(){
         
       }
     }
+    
+    for (int i = notesP2.size() - 1; i >= 0; i--){
+      
+      if (notesP2.get(i).toBeDeleted == true){
+      
+        notesP2.remove(notesP2.get(i));
+        
+      }
+    }
   }
 }
 
@@ -112,10 +129,11 @@ void dropNotes(){
   if (timeToNextNote <= 0){
     if (spotInArray < song1Array.length - 1){
       int c = int(random(1, 4));
-      println(c);
+      //println(c);
       notesP1.add(new Notes(c, 13.3, 1));
+      notesP2.add(new Notes(c, 13.3, 2));
       timeToNextNote = (song1Array[spotInArray] - timeElapsed);
-      println(timeToNextNote);
+      //println(timeToNextNote);
       spotInArray ++;
     }
   }
@@ -138,10 +156,11 @@ void updateNotes(ArrayList n){
         
       }
    // }
+   
   }
 }
 
-void collision(ArrayList n, Player x){
+void collision(ArrayList n, Player x, float b1pos, float b2pos, float b3pos){
   //println(n[0]);
   
   ArrayList<Notes> tempNotes = new ArrayList<Notes>();
@@ -149,7 +168,7 @@ void collision(ArrayList n, Player x){
   
   for (int i = tempNotes.size() - 1; i >= 0; i--){
     // button 1
-    if (tempNotes.get(i).column == 1 && x.button1Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 120, float(840)) < 40 + notesP1.get(i).size / 2  /*&& x.button1Cooldown <= 0*/){    // the cooldown makes it more difficult in some spots, when you have to capture notes quickly, which isn't great
+    if (tempNotes.get(i).column == 1 && x.button1Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, b1pos, float(840)) < 40 + tempNotes.get(i).size / 2  /*&& x.button1Cooldown <= 0*/){    // the cooldown makes it more difficult in some spots, when you have to capture notes quickly, which isn't great
         
         tempNotes.get(i).toBeDeleted = true;
         x.score ++;
@@ -159,9 +178,9 @@ void collision(ArrayList n, Player x){
       }
  
     // button 2
-    if (notesP1.get(i).column == 2 && x.button2Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 320, float(840)) < 40 + notesP1.get(i).size / 2  /*&& x.button2Cooldown <= 0*/){
+    if (tempNotes.get(i).column == 2 && x.button2Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, b2pos, float(840)) < 40 + tempNotes.get(i).size / 2  /*&& x.button2Cooldown <= 0*/){
         
-        notesP1.get(i).toBeDeleted = true;
+        tempNotes.get(i).toBeDeleted = true;
         x.score ++;
         x.button2Cooldown = 30;
         //return 1;
@@ -170,9 +189,9 @@ void collision(ArrayList n, Player x){
       
     
     // button 3
-    if (notesP1.get(i).column == 3 && x.button3Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 520, float(840)) < 40 + notesP1.get(i).size / 2  /*&& x.button3Cooldown <= 0*/){
+    if (tempNotes.get(i).column == 3 && x.button3Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, b3pos, float(840)) < 40 + tempNotes.get(i).size / 2  /*&& x.button3Cooldown <= 0*/){
         
-        notesP1.get(i).toBeDeleted = true;
+        tempNotes.get(i).toBeDeleted = true;
         x.score ++;
         x.button3Cooldown = 30;
         //return 1;
@@ -215,16 +234,16 @@ void missCollision(ArrayList n, Player x){
   }
 }
 
-void cooldown(float x){
+void cooldown(float c, Player x){
 
-  if (x > 0 && x == player1.button1Cooldown){
-    player1.button1Cooldown --;
+  if (c > 0 && c == x.button1Cooldown){
+    x.button1Cooldown --;
   }
-  if (x > 0 && x == player1.button2Cooldown){
-    player1.button2Cooldown --;
+  if (c > 0 && c == x.button2Cooldown){
+    x.button2Cooldown --;
   }
-  if (x > 0 && x == player1.button3Cooldown){
-    player1.button3Cooldown --;
+  if (c > 0 && c == x.button3Cooldown){
+    x.button3Cooldown --;
   }
 
 }
@@ -239,10 +258,11 @@ void setUpGame(String song){
     amp.input(file);
     file.rate(1);
     
+    player1.score = 0;
+    player2.score = 0;
+    
     file.play();
     gameOver = false;
-    
-    player1.score = 0;
 
 }
 
@@ -306,9 +326,6 @@ void keyPressed(){
     setUpGame("song1.wav");
   
   }
-  
-  
-  
 }
 
 
@@ -341,7 +358,6 @@ void keyReleased(){
   if (key == '.'){
     player2.button3Down = false;
   }
-
 }
 
 

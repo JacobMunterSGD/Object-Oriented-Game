@@ -33,6 +33,15 @@ class Notes{
     speed = s;
     column = x;
     println(column);
+    
+    if (whichPlayer == 1){
+      pos = new PVector((x * 200) - 80, 0);
+    }
+    
+    if (whichPlayer == 2){
+      pos = new PVector((x * 200) + 560, 0);
+    }
+    
   
   }
   
