@@ -293,11 +293,41 @@ void keyPressed(){
   
   // player one controles
   
-  if (keyCode == SHIFT){
+  /*if (keyCode == SHIFT){
     player1.button1Down = true;
+  }*/
+  
+  switch(keyCode){
+  
+    case SHIFT:
+      player1.button1Down = true;
+      break;
+    
   }
   
-  if (key == 'z'){
+  switch(key){
+    case 'z':
+      player1.button2Down = true;
+      break;
+    case 'x':
+      player1.button3Down = true;
+      break;
+      
+      // player two
+      
+    case 'm':
+      player2.button1Down = true;
+      break;
+    case ',':
+      player2.button2Down = true;
+      break;
+    case '.':
+      player2.button3Down = true;
+      break;
+      
+  }
+  
+  /*if (key == 'z'){
     player1.button2Down = true;
   }
   
@@ -317,7 +347,7 @@ void keyPressed(){
   
   if (key == '.'){
     player2.button3Down = true;
-  }
+  }*/
   
   //start game
   
@@ -337,7 +367,31 @@ void keyReleased(){
     player1.button1Down = false;
   }
   
-  if (key == 'z'){
+  switch (key){
+  
+    case 'z':
+      player1.button2Down = false;
+      break;
+    case 'x':
+      player1.button3Down = false;
+      break;
+      
+      // player two
+      
+    case 'm':
+      player2.button1Down = false;
+      break;
+    case ',':
+      player2.button2Down = false;
+      break;
+    case '.':
+      player2.button3Down = false;
+      break;
+  
+  
+  }
+  
+  /*if (key == 'z'){
     player1.button2Down = false;
   }
   
@@ -357,7 +411,7 @@ void keyReleased(){
   
   if (key == '.'){
     player2.button3Down = false;
-  }
+  }*/
 }
 
 
