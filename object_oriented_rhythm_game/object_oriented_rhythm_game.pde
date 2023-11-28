@@ -9,6 +9,7 @@ int test = 0;      // test variable to see how many times the audio has spiked -
 boolean gameOver;  // this will become false when the game starts
 
 ArrayList<Notes> notesP1 = new ArrayList<Notes>(); //An arraylist for the notes for each player
+ArrayList<Notes> notesP2 = new ArrayList<Notes>();
 
 //float[] song1Array = new float[100];
 
@@ -24,6 +25,7 @@ float timeElapsed = 0;
 int spotInArray = 0;
 
 Player player1;
+Player player2;
 
 void setup(){
   
@@ -39,6 +41,8 @@ void setup(){
   println(song1Array);
   
   player1 = new Player(1);
+  
+  player2 = new Player(2);
   
   
   
@@ -118,28 +122,35 @@ void dropNotes(){
 
 void updateNotes(ArrayList n){
 
-  for (int i = n.size() - 1; i >= 0; i--){
+  ArrayList<Notes> tempNotes = new ArrayList<Notes>();
+  tempNotes = n;
+  
+  for (int i = tempNotes.size() - 1; i >= 0; i--){
       
-    if (n == notesP1){
-      notesP1.get(i).update();
-      notesP1.get(i).display();
+    //if (tempNotes == notesP1){
+      tempNotes.get(i).update();
+      tempNotes.get(i).display();
       
-      if (notesP1.get(i).pos.y > height){
+      if (tempNotes.get(i).pos.y > height){
         //notesP1.remove(notesP1.get(i));
-        notesP1.get(i).toBeDeleted = true;
+        tempNotes.get(i).toBeDeleted = true;
         
       }
-    }
+   // }
   }
 }
 
 void collision(ArrayList n, Player x){
   //println(n[0]);
-  for (int i = n.size() - 1; i >= 0; i--){
+  
+  ArrayList<Notes> tempNotes = new ArrayList<Notes>();
+  tempNotes = n;
+  
+  for (int i = tempNotes.size() - 1; i >= 0; i--){
     // button 1
-    if (notesP1.get(i).column == 1 && x.button1Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 120, float(840)) < 40 + notesP1.get(i).size / 2){
+    if (tempNotes.get(i).column == 1 && x.button1Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 120, float(840)) < 40 + notesP1.get(i).size / 2  /*&& x.button1Cooldown <= 0*/){    // the cooldown makes it more difficult in some spots, when you have to capture notes quickly, which isn't great
         
-        notesP1.get(i).toBeDeleted = true;
+        tempNotes.get(i).toBeDeleted = true;
         x.score ++;
         x.button1Cooldown = 30;
         //return 1;
@@ -147,7 +158,7 @@ void collision(ArrayList n, Player x){
       }
  
     // button 2
-    if (notesP1.get(i).column == 2 && x.button2Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 320, float(840)) < 40 + notesP1.get(i).size / 2){
+    if (notesP1.get(i).column == 2 && x.button2Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 320, float(840)) < 40 + notesP1.get(i).size / 2  /*&& x.button2Cooldown <= 0*/){
         
         notesP1.get(i).toBeDeleted = true;
         x.score ++;
@@ -158,7 +169,7 @@ void collision(ArrayList n, Player x){
       
     
     // button 3
-    if (notesP1.get(i).column == 3 && x.button3Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 520, float(840)) < 40 + notesP1.get(i).size / 2){
+    if (notesP1.get(i).column == 3 && x.button3Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 520, float(840)) < 40 + notesP1.get(i).size / 2  /*&& x.button3Cooldown <= 0*/){
         
         notesP1.get(i).toBeDeleted = true;
         x.score ++;
@@ -166,14 +177,19 @@ void collision(ArrayList n, Player x){
         //return 1;
         
       }
+      
+      
   }
 }
 
 void missCollision(ArrayList n, Player x){
+  
+  ArrayList<Notes> tempNotes = new ArrayList<Notes>();
+  tempNotes = n;
 
   for (int i = n.size() - 1; i >= 0; i--){
     
-     if (x.button1Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 110, float(840)) > 40 + notesP1.get(i).size / 2 && x.button1Cooldown <= 0){
+     if (x.button1Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, 110, float(840)) > 40 + tempNotes.get(i).size / 2 && x.button1Cooldown <= 0){
     
       //println("button down" + player1.button1Cooldown);
        
@@ -182,14 +198,14 @@ void missCollision(ArrayList n, Player x){
       
       }
       
-     if (x.button2Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 320, float(840)) > 40 + notesP1.get(i).size / 2 && x.button2Cooldown <= 0){
+     if (x.button2Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, 320, float(840)) > 40 + tempNotes.get(i).size / 2 && x.button2Cooldown <= 0){
     
       x.score --;
       x.button2Cooldown = 30;
       
       }
       
-     if (x.button3Down == true && dist(notesP1.get(i).pos.x, notesP1.get(i).pos.y, 520, float(840)) > 40 + notesP1.get(i).size / 2 && x.button3Cooldown <= 0){
+     if (x.button3Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, 520, float(840)) > 40 + tempNotes.get(i).size / 2 && x.button3Cooldown <= 0){
     
       x.score --;
       x.button3Cooldown = 30;
