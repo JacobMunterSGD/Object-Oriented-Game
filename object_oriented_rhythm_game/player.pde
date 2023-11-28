@@ -82,21 +82,21 @@ class Player{
         } else {
           fill(0, 0, 0,  100 + player2.button1Cooldown);
         }  
-      rect(40, 800, 160, 80);
+      rect(680, 800, 160, 80);
       
       if (button2Down == true){ 
           fill(0, 0, 0, 100 + player2.button2Cooldown * 5);
         } else {
           fill(0, 0, 0, 100 + player2.button2Cooldown);
         }  
-      rect(240, 800, 160, 80);
+      rect(880, 800, 160, 80);
       
        if (button3Down == true){ 
           fill(0, 0, 0, 100 + player2.button3Cooldown * 5);
         } else {
           fill(0, 0, 0, 100 + player2.button3Cooldown);
         }  
-      rect(440, 800, 160, 80);
+      rect(1080, 800, 160, 80);
         
     }  
   }
