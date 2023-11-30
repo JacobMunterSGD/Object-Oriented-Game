@@ -30,17 +30,8 @@ class Player{
 
   Player(int wp){
     
-    whichPlayer = wp;
-    
-
-  
-      
-  }
-  
-  void collision(int c){
-  
-    
-  
+    whichPlayer = wp;    // we only really need to know which player we're talking about
+   
   }
   
   void display(){
@@ -52,7 +43,7 @@ class Player{
       //for(int i = 0; i < 600; i += 200){
       
       if (button1Down == true){ 
-          fill(0, 0, 0,  100 + player1.button1Cooldown * 5);
+          fill(0, 0, 0,  100 + player1.button1Cooldown * 5);      // the alpha section of fill makes the button slowly fade when released
         } else {
           fill(0, 0, 0,  100 + player1.button1Cooldown);
         }  
@@ -74,7 +65,7 @@ class Player{
         
     }  
     
-        if (whichPlayer == 2){
+   if (whichPlayer == 2){
       
       
       if (button1Down == true){ 
@@ -100,6 +91,4 @@ class Player{
         
     }  
   }
-
-
 }
