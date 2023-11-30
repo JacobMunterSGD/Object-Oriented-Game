@@ -4,7 +4,7 @@ void keyPressed(){      // all the button inputs
     notesP1.add(new Notes(int(random(1, 4)), 5, 1));    // add more notes artificially
   }
   
-  // player one controles
+  // player one controls
   
   /*if (keyCode == SHIFT){
     player1.button1Down = true;
@@ -20,47 +20,33 @@ void keyPressed(){      // all the button inputs
   
   switch(key){
     case 'z':
+    case 'Z':
       player1.button2Down = true;
       break;
+     
     case 'x':
+    case 'X':
       player1.button3Down = true;
       break;
       
       // player two
       
     case 'm':
+    case 'M':
       player2.button1Down = true;
       break;
+      
     case ',':
+    case '<':
       player2.button2Down = true;
       break;
+      
     case '.':
+    case '>':
       player2.button3Down = true;
       break;
       
   }
-  
-  /*if (key == 'z'){
-    player1.button2Down = true;
-  }
-  
-  if (key == 'x'){
-    player1.button3Down = true;
-  }
-  
-  // player two controls
-  
-  if (key == 'm'){
-    player2.button1Down = true;
-  }
-  
-  if (key == ','){
-    player2.button2Down = true;
-  }
-  
-  if (key == '.'){
-    player2.button3Down = true;
-  }*/
   
   //start game
   
@@ -71,58 +57,48 @@ void keyPressed(){      // all the button inputs
   }
 }
 
-
 void keyReleased(){
 
   // player one controls
   
-  if (keyCode == SHIFT){
-    player1.button1Down = false;
+  switch(keyCode){
+  
+    case SHIFT:
+      player1.button1Down = false;
+      break;
+    case ALT:
+      player1.button2Down = false;
+      break;
   }
+  
   
   switch (key){
   
     case 'z':
+    case 'Z':
       player1.button2Down = false;
       break;
+      
     case 'x':
+    case 'X':
       player1.button3Down = false;
       break;
       
       // player two
       
     case 'm':
+    case 'M':
       player2.button1Down = false;
       break;
+      
     case ',':
+    case '<':
       player2.button2Down = false;
       break;
+      
     case '.':
+    case '>':
       player2.button3Down = false;
       break;
-  
-  
   }
-  
-  /*if (key == 'z'){
-    player1.button2Down = false;
-  }
-  
-  if (key == 'x'){
-    player1.button3Down = false;
-  }
-  
-  // player two controls
-  
-  if (key == 'm'){
-    player2.button1Down = false;
-  }
-  
-  if (key == ','){
-    player2.button2Down = false;
-  }
-  
-  if (key == '.'){
-    player2.button3Down = false;
-  }*/
 }
