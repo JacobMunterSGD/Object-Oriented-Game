@@ -150,7 +150,7 @@ void updateNotes(ArrayList n){        // this function updates the location of t
   
   for (int i = tempNotes.size() - 1; i >= 0; i--){
       
-    //if (tempNotes == notesP1){
+
       tempNotes.get(i).update();
       tempNotes.get(i).display();
       
@@ -159,8 +159,6 @@ void updateNotes(ArrayList n){        // this function updates the location of t
         tempNotes.get(i).toBeDeleted = true;
         
       }
-   // }
-   
   }
 }
 

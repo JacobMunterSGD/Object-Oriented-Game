@@ -24,7 +24,7 @@ class Notes{
   int column;
   boolean toBeDeleted = false;
   
-  int size = 30;
+  PVector size = new PVector (30, 30);
 
   Notes(int x, float s, int p){      // the constructor just sets up a bunch of the variables for the note. It probably won't change, but it can be easily changed just in case
     
@@ -54,7 +54,7 @@ class Notes{
   void display(){
     
     fill(0);
-    ellipse(pos.x, pos.y, size, size);      // display it on the screen
+    ellipse(pos.x, pos.y, size.x, size.y);      // display it on the screen
   
   }
 

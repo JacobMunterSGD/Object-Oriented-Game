@@ -28,7 +28,7 @@ class Player{
   
   float score;
 
-  Player(){    // if a player object is created without passing an argument, the player is just set to 1;
+  Player(){   // if a player object is created without passing an argument, the player is just set to 1
   
     whichPlayer = 1;
   
@@ -36,7 +36,7 @@ class Player{
   
   Player(int wp){
     
-    whichPlayer = wp;    // we only really need to know which player we're talking about
+    whichPlayer = wp;     // we only really need to know which player we're talking about
    
   }
   
