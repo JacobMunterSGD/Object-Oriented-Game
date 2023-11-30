@@ -12,6 +12,8 @@ boolean titleScreen; // this will also become false when the game starts, this i
 ArrayList<Notes> notesP1 = new ArrayList<Notes>(); //An arraylist for the notes for each player
 ArrayList<Notes> notesP2 = new ArrayList<Notes>();
 
+ArrayList<Particle> particles = new ArrayList<Particle>(); // array list that stores the particles
+
 
 // this song stores all the times in the song when the notes should drop, this is always going to be static, it simply stores the data to be called on later
 float[] song1Array = {4, 6, 8, 10, 12, 14, 15, 16, 
@@ -77,6 +79,19 @@ void draw(){
     player1.display();      // both of the players buttons are displayed
     player2.display();
 
+    
+    
+    for (int i = particles.size() - 1; i >= 0; i--){    // this checks if any notes have been marked to be removed, and removes them. This is all done in the same spot because there are arrayList issues when objects are just removed whenever
+      
+      particles.get(i).display();
+      
+      if  (particles.get(i).timeAlive < 0){
+         particles.remove(particles.get(i));
+      }
+
+      
+    }
+
     //loudness = amp.analyze();    
     //testingFunction();
     
@@ -107,6 +122,8 @@ void draw(){
     
     timeToNextNote --;    // when this variable reaches zero, the next note is dropped
     timeElapsed ++;       // this variables keeps track of the amount of time since the game started, kind of like frameCount, but it only starts after gameOver is false
+    
+    
     
     //println(player1.button1Cooldown);
     

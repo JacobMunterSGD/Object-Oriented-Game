@@ -11,6 +11,11 @@ void collision(ArrayList n, Player x, float b1pos, float b2pos, float b3pos){   
         tempNotes.get(i).toBeDeleted = true;
         x.score ++;
         x.button1Cooldown = 30;
+        
+        for (int j = 0; j < 10; j++){
+          particles.add(new Particle(120, 840));
+        }
+
 
       }
  
