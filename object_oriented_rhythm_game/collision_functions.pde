@@ -13,7 +13,7 @@ void collision(ArrayList n, Player x, float b1pos, float b2pos, float b3pos){   
         x.button1Cooldown = 30;
         
         for (int j = 0; j < 10; j++){
-          particles.add(new Particle(120, 840));
+          particles.add(new Particle(b1pos, 840));
         }
 
 
@@ -25,6 +25,9 @@ void collision(ArrayList n, Player x, float b1pos, float b2pos, float b3pos){   
         tempNotes.get(i).toBeDeleted = true;
         x.score ++;
         x.button2Cooldown = 30;
+        for (int j = 0; j < 10; j++){
+          particles.add(new Particle(b2pos, 840));
+        }
         
       }
       
@@ -35,6 +38,9 @@ void collision(ArrayList n, Player x, float b1pos, float b2pos, float b3pos){   
         tempNotes.get(i).toBeDeleted = true;
         x.score ++;
         x.button3Cooldown = 30;
+        for (int j = 0; j < 10; j++){
+          particles.add(new Particle(b3pos, 840));
+        }
         
       }
       

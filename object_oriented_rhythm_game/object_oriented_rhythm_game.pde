@@ -238,37 +238,3 @@ void testingFunction(){    // this was used to check if things were working, whe
     
     }    
 }
-
-
-/*
-If gameOver is true
-  if they’re in the title screen
-    Draw the title screen and all the necessary things there
-  If they’re in the level end screen
-    Draw the level end screen
-
-If gameOver is false
-  If the game just started
-    Setup up the game
-      The song
-when the notes are going to fall
-    Add all the notes in the level to an array, and then we can target
-all of them at once. Then duplicate it for the other player.
-The player scores get reset
-Draw all the graphics on the screen
-Create the player button objects
-
-  If the game hasn’t just started
-    Update the game
-      Move all the notes
-        If there’s a note getting dropped at this time, select a random
-location (of the three possible slots) for it to fall to
-      Check for player input
-        If they correctly “captured” a note, add score
-          Draw particle effects to give feedback to the player
-        If they failed in capturing a note, remove score
-      Update the score display
-      Check if the song has ended
-      Update any other visuals
-
-*/
