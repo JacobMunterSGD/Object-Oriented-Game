@@ -16,7 +16,9 @@ ArrayList<Notes> notesP2 = new ArrayList<Notes>();
 ArrayList<Particle> particles = new ArrayList<Particle>(); // array list that stores the particles
 
 PImage noteImage;
-PImage playerButton;
+PImage playerButtonP1;
+PImage playerButtonP2;
+PImage bg;
 
 // this song stores all the times in the song when the notes should drop, this is always going to be static, it simply stores the data to be called on later
 float[] song1Array = {4, 6, 8, 10, 12, 14, 15, 16, 
@@ -38,8 +40,13 @@ void setup(){
   size(1280, 1024);
   background(255);      // maybe I'll replace this with some kind of fancy image, that would be fun
   
+  
+ 
+  
   noteImage = loadImage("music-note.png");
-  playerButton = loadImage("player button.png");
+  playerButtonP1 = loadImage("player button.png");
+  playerButtonP2 = loadImage("player button p2.png");
+  bg = loadImage("bg.png");
   
   for (int i = song1Array.length - 1; i >= 0; i--){      // this for loop goes through every spot in the array, and changes the array from seconds to frames, which is easier for processing to handle
     //print(song1Array[i] + "    " );
@@ -82,10 +89,14 @@ void draw(){
   
   else if (gameOver == false){    // this is what's happening when the game is running
     
+    image(bg, 0, 0, width, height);
+    
+    //fill((loudness * 255) + 100);
+    //noStroke();
+    //ellipse(width/2, height/2, loudness * 400, loudness * 400);
+    
     player1.display();      // both of the players buttons are displayed
     player2.display();
-
-    
     
     for (int i = particles.size() - 1; i >= 0; i--){    // this checks if any notes have been marked to be removed, and removes them. This is all done in the same spot because there are arrayList issues when objects are just removed whenever
       
@@ -97,8 +108,10 @@ void draw(){
 
       
     }
-
-    //loudness = amp.analyze();    
+    
+    loudness = 1 - amp.analyze();
+    //println(loudness);
+    
     //testingFunction();
     
     cooldown(player1.button1Cooldown, player1);      // this section adds a "miss" cooldown for the button. The player is penalized when they don't successfuly capture a note,
@@ -113,9 +126,10 @@ void draw(){
     updateNotes(notesP2);
     
     textSize(50);
+    textAlign(CENTER);
     fill(0);
-    text(int(player1.score), 0 + 100, 100);      // this displays the score for each player
-    text(int(player2.score), width - 100, 100);
+    text(int(player1.score), 320, height - 50);      // this displays the score for each player
+    text(int(player2.score), 960, height - 50);
     
     //Notes[] ntemp = notesP1.toArray();
     //player1.score = collision(notesP1);

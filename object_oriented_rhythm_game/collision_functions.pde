@@ -6,10 +6,10 @@ void collision(ArrayList n, Player x, float b1pos, float b2pos, float b3pos){   
   
   for (int i = tempNotes.size() - 1; i >= 0; i--){    // every note in the array is checked
     // button 1
-    if (tempNotes.get(i).column == 1 && x.button1Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, b1pos, float(840)) < 40 + tempNotes.get(i).size.y / 2  /*&& x.button1Cooldown <= 0*/){    // the cooldown makes it more difficult in some spots, when you have to capture notes quickly, which isn't great
+    if (tempNotes.get(i).column == 1 && x.button1Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, b1pos, float(840)) < 50 + tempNotes.get(i).size.y / 2  /*&& x.button1Cooldown <= 0*/){    // the cooldown makes it more difficult in some spots, when you have to capture notes quickly, which isn't great
         
         tempNotes.get(i).toBeDeleted = true;
-        x.score ++;
+        x.score += 100;
         x.button1Cooldown = 30;
         
         for (int j = 0; j < 10; j++){
@@ -20,10 +20,10 @@ void collision(ArrayList n, Player x, float b1pos, float b2pos, float b3pos){   
       }
  
     // button 2
-    if (tempNotes.get(i).column == 2 && x.button2Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, b2pos, float(840)) < 40 + tempNotes.get(i).size.y / 2  /*&& x.button2Cooldown <= 0*/){
+    if (tempNotes.get(i).column == 2 && x.button2Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, b2pos, float(840)) < 50 + tempNotes.get(i).size.y / 2  /*&& x.button2Cooldown <= 0*/){
         
         tempNotes.get(i).toBeDeleted = true;
-        x.score ++;
+        x.score += 100;
         x.button2Cooldown = 30;
         for (int j = 0; j < 10; j++){
           particles.add(new Particle(b2pos, 840));
@@ -33,10 +33,10 @@ void collision(ArrayList n, Player x, float b1pos, float b2pos, float b3pos){   
       
     
     // button 3
-    if (tempNotes.get(i).column == 3 && x.button3Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, b3pos, float(840)) < 40 + tempNotes.get(i).size.y / 2  /*&& x.button3Cooldown <= 0*/){
+    if (tempNotes.get(i).column == 3 && x.button3Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, b3pos, float(840)) < 50 + tempNotes.get(i).size.y / 2  /*&& x.button3Cooldown <= 0*/){
         
         tempNotes.get(i).toBeDeleted = true;
-        x.score ++;
+        x.score += 100;
         x.button3Cooldown = 30;
         for (int j = 0; j < 10; j++){
           particles.add(new Particle(b3pos, 840));
@@ -55,25 +55,25 @@ void missCollision(ArrayList n, Player x){    // this function checks if the pla
 
   for (int i = n.size() - 1; i >= 0; i--){
     
-     if (x.button1Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, 110, float(840)) > 40 + tempNotes.get(i).size.y / 2 && x.button1Cooldown <= 0){
+     if (x.button1Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, 110, float(840)) > 50 + tempNotes.get(i).size.y / 2 && x.button1Cooldown <= 0){
     
       //println("button down" + player1.button1Cooldown);
        
-      x.score --;
+      x.score -= 50;
       x.button1Cooldown = 30;
       
       }
       
-     if (x.button2Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, 320, float(840)) > 40 + tempNotes.get(i).size.y / 2 && x.button2Cooldown <= 0){
+     if (x.button2Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, 320, float(840)) > 50 + tempNotes.get(i).size.y / 2 && x.button2Cooldown <= 0){
     
-      x.score --;
+      x.score -= 50;
       x.button2Cooldown = 30;
       
       }
       
-     if (x.button3Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, 520, float(840)) > 40 + tempNotes.get(i).size.y / 2 && x.button3Cooldown <= 0){
+     if (x.button3Down == true && dist(tempNotes.get(i).pos.x, tempNotes.get(i).pos.y, 520, float(840)) > 50 + tempNotes.get(i).size.y / 2 && x.button3Cooldown <= 0){
     
-      x.score --;
+      x.score -= 50;
       x.button3Cooldown = 30;
       
       }
