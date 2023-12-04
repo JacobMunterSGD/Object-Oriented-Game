@@ -36,18 +36,20 @@ class Player{
       //rect(40, 800, 160, 80);
       //for(int i = 0; i < 600; i += 200){
       
-      if (button1Down == true){ 
-          fill(0, 0, 0,  100 + player1.button1Cooldown * 5);      // the alpha section of fill makes the button slowly fade when released
-        } else {
-          fill(0, 0, 0,  100 + player1.button1Cooldown);
-        }  
+      //if (button1Down == true){ 
+          //fill(0, 0, 0,  player1.button1Cooldown * 5);      // the alpha section of fill makes the button slowly fade when released
+        //} else {
+          fill(0, 0, 0,  player1.button1Cooldown * 5);
+        //}  
+      
+      image(playerButton, 40, 800, 160, 80);
       rect(40, 800, 160, 80);
       
-      if (button2Down == true){ 
-          fill(0, 0, 0, 100 + player1.button2Cooldown * 5);
-        } else {
+      //if (button2Down == true){ 
+          fill(0, 0, 0, player1.button2Cooldown * 5);
+        //} else {
           fill(0, 0, 0, 100 + player1.button2Cooldown);
-        }  
+      //  }  
       rect(240, 800, 160, 80);
       
        if (button3Down == true){ 

@@ -1,4 +1,5 @@
 import processing.sound.*;
+
 SoundFile file;    // the sound file
 Amplitude amp;     // how the sound file is analyzed
 AudioIn in;        // what audio is going into the amplitude
@@ -14,6 +15,8 @@ ArrayList<Notes> notesP2 = new ArrayList<Notes>();
 
 ArrayList<Particle> particles = new ArrayList<Particle>(); // array list that stores the particles
 
+PImage noteImage;
+PImage playerButton;
 
 // this song stores all the times in the song when the notes should drop, this is always going to be static, it simply stores the data to be called on later
 float[] song1Array = {4, 6, 8, 10, 12, 14, 15, 16, 
@@ -34,6 +37,9 @@ void setup(){
   
   size(1280, 1024);
   background(255);      // maybe I'll replace this with some kind of fancy image, that would be fun
+  
+  noteImage = loadImage("music-note.png");
+  playerButton = loadImage("player button.png");
   
   for (int i = song1Array.length - 1; i >= 0; i--){      // this for loop goes through every spot in the array, and changes the array from seconds to frames, which is easier for processing to handle
     //print(song1Array[i] + "    " );
@@ -107,6 +113,7 @@ void draw(){
     updateNotes(notesP2);
     
     textSize(50);
+    fill(0);
     text(int(player1.score), 0 + 100, 100);      // this displays the score for each player
     text(int(player2.score), width - 100, 100);
     

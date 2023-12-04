@@ -35,8 +35,10 @@ class Notes{
   
   void display(){
     
-    fill(0);
+    fill(0, 0, 0, 100);
+    image(noteImage, pos.x - 15, pos.y - 60, 60, 80);
     ellipse(pos.x, pos.y, size.x, size.y);      // display it on the screen
+
   
   }
 
