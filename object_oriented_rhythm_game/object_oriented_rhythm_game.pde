@@ -94,7 +94,6 @@ void draw(){
     
     }
     
-    
   }
   
   else if (gameOver == false){    // this is what's happening when the game is running
@@ -227,7 +226,11 @@ void cooldown(float c, Player x){    // this function keeps track of the button 
 }
 
 void setUpGame(String song){      // this sets up the game
-
+    
+    timeToNextNote = 60; 
+    timeElapsed = 0;     
+    spotInArray = 0;    
+    
     file = new SoundFile(this, song);    // this sets up the sound file with the processing sound library
     amp = new Amplitude(this);
     in = new AudioIn(this, 0);
@@ -252,7 +255,9 @@ void setUpGame(String song){      // this sets up the game
     
 }
 
-void testingFunction(){    // this was used to check if things were working, when getting the amplitude realtime from the audio
+float testingFunction(){    // this was used to check if things were working, when getting the amplitude realtime from the audio
+  
+    float c = 0;
   
     fill(0);
     text(loudness, 100, 100);
@@ -268,5 +273,11 @@ void testingFunction(){    // this was used to check if things were working, whe
       println(file.positionFrame());
       test ++;
     
-    }    
+    }
+    
+    c = loudness;
+    
+    return c;
+    
+    
 }
