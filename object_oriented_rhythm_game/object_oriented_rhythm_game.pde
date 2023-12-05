@@ -19,6 +19,7 @@ PImage noteImage;      // loading all the images in
 PImage playerButtonP1;
 PImage playerButtonP2;
 PImage bg;
+PImage title;
 
 PFont font;
 
@@ -26,7 +27,11 @@ PFont font;
 float[] song1Array = {4, 6, 8, 10, 12, 14, 15, 16, 
                       16.75, 17.25, 17.75, 18, 18.75, 19.25, 20.5, 20.75, 21, 21.5, 21.75, 22, 22.75, 23.5, 24.75, 25, 25.37, 25.75, 26, 27, 27.12, 27.25, 27.37, 27.75, 28, 29.5, 29.75, 30, 31,
                       32, 32.25, 33.25, 33.5, 34, 34.25, 35, 35.25, 35.5, 35.75, 36, 36.25, 37.25, 37.5, 38, 38.25, 38.75, 39.25, 39.5, 39.75, 40, 40.25, 41.25, 41.5, 42, 42.25, 43, 43.25, 43.5, 43.75, 44, 44.25, 45.25, 45.5, 46, 46.25, 46.75, 47.25, 47.5, 47.75,
-                      48, 48.12, 48.25, 48.37, 48.5, 48.75, 49, 49.37, 49.75, };
+                      48, 48.12, 48.25, 48.37, 48.5, 48.75, 49, 49.37, 49.75, 50.25, 50.5, 50.75, 51, 51.12, 51.25, 51.5, 51.62, 51.75, 52, 52.5, 53, 53.25, 53.5, 53.75, 54.25, 54.75, 55, 55.25, 55.5, 55.75, 
+                      56, 56.12, 56.25, 56.37, 56.5, 56.75, 57, 57.37, 57.75, 58.25, 58.5, 58.75, 59, 59.12, 59.25, 59.5, 59.62, 59.75, 60, 60.5, 61, 61.25, 61.5, 61.75, 62.25, 62.75, 63, 63.25, 63.5, 63.75, 
+                      64, 64.12, 64.25, 64.37, 64.5, 64.75, 65, 65.37, 65.75, 66.25, 66.5, 66.75, 67, 67.12, 67.25, 67.5, 67.62, 67.75, 68, 68.5, 69, 69.25, 69.5, 69.75, 70.25, 70.75, 71, 71.25, 71.5, 71.75,
+                      72, 72.5, 73, 73.5, 74.5, 75, 75.5, 76.5, 77, 77.5, 78.5, 79, 79.5, 80.5, 81, 81.5, 82.5, 83, 83.5, 84.5, 85, 85.5, 86.5, 87, 87.5, 
+                      88, 88.75, 89.25, 89.75, 90, 90.75, 91.25, 92.5, 92.75, 93, 93.5, 93.75, 94, 94.75, 95.5, 96.75, 97, 97.37, 97.75, 98, 99, 99.12, 99.25, 99.37, 99.75, 100, 101.5, 102.75, 102, 103, 104, 110, 111, 112};
 
 
 
@@ -40,7 +45,10 @@ Player player2;
 void setup(){
   
   size(1280, 1024);
-  background(255);      // maybe I'll replace this with some kind of fancy image, that would be fun
+  
+  title = loadImage("title screen.png");
+  
+  image(title, 0, 0, 1280, 1024);
   
   noteImage = loadImage("music-note.png");
   playerButtonP1 = loadImage("player button.png");
@@ -67,14 +75,14 @@ void setup(){
 }
 
 void draw(){
-  
-  background(255);
 
   if (gameOver == true){    // this is what's happening when the game isn't running
     
     if (titleScreen){    // if we're in the starting title screen, some text is displayed that explains what is going on
       
-      fill(0);
+      image(title, 0, 0, 1280, 1024);
+      
+     /* fill(0);
       textAlign(CENTER);
       textSize(50);
       text("Object Oriented Rhythm Game", width/2, height/2 - 200);
@@ -82,7 +90,7 @@ void draw(){
       text("Press Space to Start", width/2, height/2 - 50);
       
       text("player one uses shift, z, and x", width/4, height/2 + 100);
-      text("player two uses m, comma, and period", width/4*3, height/2 + 100);
+      text("player two uses m, comma, and period", width/4*3, height/2 + 100);*/
     
     }
     
@@ -231,7 +239,7 @@ void setUpGame(String song){      // this sets up the game
     player1.score = 0;    // both of the players scores are set to zero
     player2.score = 0;
     
-    file.play();    // the file starts playing
+    
     
     notesP1.add(new Notes(30, 0, 1));    // this just makes it so there's always at least one note in each array, so things that check for notes never break
     notesP2.add(new Notes(30, 0, 2));
@@ -239,6 +247,7 @@ void setUpGame(String song){      // this sets up the game
     titleScreen = false;    // we're no longer in the title screen
     gameOver = false;       // the game is now ON
     
+    file.play();    // the file starts playing
     
     
 }

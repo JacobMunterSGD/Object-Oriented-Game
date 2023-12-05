@@ -33,16 +33,22 @@ void keyPressed(){      // all the button inputs
       
     case 'm':
     case 'M':
+    case 'w':
+    case 'W':
       player2.button1Down = true;
       break;
       
     case ',':
     case '<':
+    case 'e':
+    case 'E':
       player2.button2Down = true;
       break;
       
     case '.':
     case '>':
+    case '[':
+    case '{':
       player2.button3Down = true;
       break;
       
@@ -88,16 +94,22 @@ void keyReleased(){
       
     case 'm':
     case 'M':
+    case 'w':
+    case 'W':
       player2.button1Down = false;
       break;
       
     case ',':
     case '<':
+    case 'e':
+    case 'E':
       player2.button2Down = false;
       break;
       
     case '.':
     case '>':
+    case '[':
+    case '{':
       player2.button3Down = false;
       break;
   }
