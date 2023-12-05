@@ -15,10 +15,12 @@ ArrayList<Notes> notesP2 = new ArrayList<Notes>();
 
 ArrayList<Particle> particles = new ArrayList<Particle>(); // array list that stores the particles
 
-PImage noteImage;
+PImage noteImage;      // loading all the images in
 PImage playerButtonP1;
 PImage playerButtonP2;
 PImage bg;
+
+PFont font;
 
 // this song stores all the times in the song when the notes should drop, this is always going to be static, it simply stores the data to be called on later
 float[] song1Array = {4, 6, 8, 10, 12, 14, 15, 16, 
@@ -40,13 +42,13 @@ void setup(){
   size(1280, 1024);
   background(255);      // maybe I'll replace this with some kind of fancy image, that would be fun
   
-  
- 
-  
   noteImage = loadImage("music-note.png");
   playerButtonP1 = loadImage("player button.png");
   playerButtonP2 = loadImage("player button p2.png");
   bg = loadImage("bg.png");
+  
+  font = createFont("MekanikStd", 30);
+  textFont(font);
   
   for (int i = song1Array.length - 1; i >= 0; i--){      // this for loop goes through every spot in the array, and changes the array from seconds to frames, which is easier for processing to handle
     //print(song1Array[i] + "    " );
@@ -128,8 +130,8 @@ void draw(){
     textSize(50);
     textAlign(CENTER);
     fill(0);
-    text(int(player1.score), 320, height - 50);      // this displays the score for each player
-    text(int(player2.score), 960, height - 50);
+    text(int(player1.score), 320, height - 65);      // this displays the score for each player
+    text(int(player2.score), 960, height - 65);
     
     //Notes[] ntemp = notesP1.toArray();
     //player1.score = collision(notesP1);
