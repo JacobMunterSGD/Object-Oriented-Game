@@ -72,7 +72,7 @@ void setup(){
 
   gameOver = true;      // the game hasn't started yet, so game over is true
   titleScreen = true;   // we want to start in the title screen
-  oneTimeThrough = false;
+  oneTimeThrough = false;    // we haven't played the game yet, so this starts as false
   
 }
 
@@ -86,12 +86,13 @@ void draw(){
       
       //println(player1.score + "   " + player2.score);
       if (oneTimeThrough){
-        textSize(40);
+        fill(0);
+        textSize(75);
         textAlign(CENTER);
         text("Player 1 Score", 0 + 175, 280);
-        text(int(player1.score), 0 + 175, 330);
+        text(int(player1.score), 0 + 175, 350);
         text("Player 2 Score", width - 175, 280);
-        text(int(player2.score), width - 175, 330);
+        text(int(player2.score), width - 175, 350);
       }
       //text("Player 2 Score = " + int(player2.score), width - 20, 350);
 
