@@ -9,6 +9,7 @@ int test = 0;      // test variable to see how many times the audio has spiked -
 
 boolean gameOver;  // this will become false when the game starts
 boolean titleScreen; // this will also become false when the game starts, this is to know what state we're in during the start of the program
+boolean oneTimeThrough; // this will become true when the game finishes for the first time. After this is true, the previous games player scores will appear on screen
 
 ArrayList<Notes> notesP1 = new ArrayList<Notes>(); //An arraylist for the notes for each player
 ArrayList<Notes> notesP2 = new ArrayList<Notes>();
@@ -46,11 +47,11 @@ void setup(){
   
   size(1280, 1024);
   
-  title = loadImage("title screen.png");
+  title = loadImage("title screen.png");    // loading the title screen image
   
-  image(title, 0, 0, 1280, 1024);
+  image(title, 0, 0, 1280, 1024);    // displaying the title screen on the very first frame
   
-  noteImage = loadImage("music-note.png");
+  noteImage = loadImage("music-note.png");          // loading the various images in the game
   playerButtonP1 = loadImage("player button.png");
   playerButtonP2 = loadImage("player button p2.png");
   bg = loadImage("bg.png");
@@ -71,6 +72,7 @@ void setup(){
 
   gameOver = true;      // the game hasn't started yet, so game over is true
   titleScreen = true;   // we want to start in the title screen
+  oneTimeThrough = false;
   
 }
 
@@ -82,6 +84,16 @@ void draw(){
       
       image(title, 0, 0, 1280, 1024);
       
+      //println(player1.score + "   " + player2.score);
+      if (oneTimeThrough){
+        textSize(40);
+        textAlign(CENTER);
+        text("Player 1 Score", 0 + 175, 280);
+        text(int(player1.score), 0 + 175, 330);
+        text("Player 2 Score", width - 175, 280);
+        text(int(player2.score), width - 175, 330);
+      }
+      //text("Player 2 Score = " + int(player2.score), width - 20, 350);
 
       
      /* fill(0);
@@ -155,8 +167,6 @@ void draw(){
     timeToNextNote --;    // when this variable reaches zero, the next note is dropped
     timeElapsed ++;       // this variables keeps track of the amount of time since the game started, kind of like frameCount, but it only starts after gameOver is false
     
-    
-    
     //println(player1.button1Cooldown);
     
     for (int i = notesP1.size() - 1; i >= 0; i--){    // this checks if any notes have been marked to be removed, and removes them. This is all done in the same spot because there are arrayList issues when objects are just removed whenever
@@ -168,7 +178,7 @@ void draw(){
       }
     }
     
-    for (int i = notesP2.size() - 1; i >= 0; i--){
+    for (int i = notesP2.size() - 1; i >= 0; i--){    // this checks the same thing for the other player's notes
       
       if (notesP2.get(i).toBeDeleted == true){
       
@@ -194,8 +204,9 @@ void dropNotes(){    // this the function that drops the notes into the game
     else{
     
     println("works");
-    gameOver = true;
+    gameOver = true;      // if we've gotten to the last spot in the array, the game is over
     titleScreen = true;
+    oneTimeThrough = true;
     
     }
   }
@@ -203,16 +214,15 @@ void dropNotes(){    // this the function that drops the notes into the game
 
 void updateNotes(ArrayList n){        // this function updates the location of the notes on each side of the screen, and checks if they were missed by the player and exited the screen, at which point they will be deleted
 
-  ArrayList<Notes> tempNotes = new ArrayList<Notes>();
+  ArrayList<Notes> tempNotes = new ArrayList<Notes>();    // this creates a local variable that is the given array list you wish to use
   tempNotes = n;
   
-  for (int i = tempNotes.size() - 1; i >= 0; i--){
-      
+  for (int i = tempNotes.size() - 1; i >= 0; i--){      // this loop goes through all of the notes
 
-      tempNotes.get(i).update();
-      tempNotes.get(i).display();
+      tempNotes.get(i).update();    // update the position
+      tempNotes.get(i).display();   // show on screen
       
-      if (tempNotes.get(i).pos.y > height){
+      if (tempNotes.get(i).pos.y > height + 30){    // if the note goes below the bottom of the screen, it is removed from the array
         //notesP1.remove(notesP1.get(i));
         tempNotes.get(i).toBeDeleted = true;
         
@@ -238,11 +248,11 @@ void cooldown(float c, Player x){    // this function keeps track of the button 
 
 void setUpGame(String song){      // this sets up the game
     
-    timeToNextNote = 60; 
+    timeToNextNote = 60;     // this resets all the variables to start the game
     timeElapsed = 0;     
     spotInArray = 0;    
     
-    file = new SoundFile(this, song);    // this sets up the sound file with the processing sound library
+    file = new SoundFile(this, song);    // this sets up the processing sound library objects
     amp = new Amplitude(this);
     in = new AudioIn(this, 0);
     

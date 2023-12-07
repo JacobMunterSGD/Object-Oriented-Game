@@ -10,7 +10,7 @@ void keyPressed(){      // all the button inputs
     player1.button1Down = true;
   }*/
   
-  switch(keyCode){
+  switch(keyCode){    // if the button is down, the corresponding button down variable is set to true
   
     case SHIFT:
       player1.button1Down = true;
@@ -56,14 +56,14 @@ void keyPressed(){      // all the button inputs
   
   //start game
   
-  if (key == ' ' && gameOver == true){
+  if (((key == ' ') || (key == '1')) && gameOver == true){    // starts the game when either of these buttons are pressed, and game over is true
     
     setUpGame("song1.wav");
   
   }
 }
 
-void keyReleased(){
+void keyReleased(){    // if the button is not down, the corresponding button is set to false
 
   // player one controls
   

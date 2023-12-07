@@ -37,9 +37,9 @@ class Player{
       //for(int i = 0; i < 600; i += 200){
       
 
-      fill(0, 0, 0,  player1.button1Cooldown * 5);
-      image(playerButtonP1, 40, 800, 160, 80);
-      rect(40, 800, 160, 80);
+      fill(0, 0, 0,  player1.button1Cooldown * 5);    // the fill gives feedback for the cooldown
+      image(playerButtonP1, 40, 800, 160, 80);        // custom image of the player button
+      rect(40, 800, 160, 80);                         // the rectangle that the fill is applied to
 
       fill(0, 0, 0, player1.button2Cooldown * 5);
       image(playerButtonP1, 240, 800, 160, 80);
@@ -51,7 +51,7 @@ class Player{
         
     }  
     
-   if (whichPlayer == 2){
+   else if (whichPlayer == 2){
       
       fill(0, 0, 0,  player2.button1Cooldown * 5);
       image(playerButtonP2, 680, 800, 160, 80);

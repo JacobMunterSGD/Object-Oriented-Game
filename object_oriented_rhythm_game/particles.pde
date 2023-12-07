@@ -10,13 +10,13 @@ class Particle{
   
   float timeAlive;
   
-  Particle(float x1, float y1){
+  Particle(float x1, float y1){    // constructor for the particle, it takes arguements for the position of the particle
     
     size.x = 15;
     size.y = 15;
     
-    pos.x = random(-4, 4);
-    pos.y = random(-4, 4);
+    velocity.x = random(-4, 4);
+    velocity.y = random(-4, 4);
     
     colour.x = random(1, 255);
     colour.y = random(1, 255);

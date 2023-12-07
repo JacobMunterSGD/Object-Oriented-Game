@@ -29,15 +29,15 @@ class Notes{
   
   void update(){
   
-    pos.y += speed;      // move it down the screen
+    pos.y += speed;      // move it down the screen, by the speed we set earlier
   
   }
   
   void display(){
     
     fill(0, 0, 0, 100);
-    image(noteImage, pos.x - 15, pos.y - 60, 60, 80);
-    ellipse(pos.x, pos.y, size.x, size.y);      // display it on the screen
+    image(noteImage, pos.x - 15, pos.y - 60, 60, 80);    // displays the actual image of the note
+    //ellipse(pos.x, pos.y, size.x, size.y);      // display it on the screen
 
   
   }
