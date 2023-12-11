@@ -6,6 +6,7 @@ AudioIn in;        // what audio is going into the amplitude
 
 float loudness;    // how loud the audio is at the moment
 int test = 0;      // test variable to see how many times the audio has spiked - not using in the final program
+float test2;       // another testing function
 
 boolean gameOver;  // this will become false when the game starts
 boolean titleScreen; // this will also become false when the game starts, this is to know what state we're in during the start of the program
@@ -36,14 +37,16 @@ float[] song1Array = {4, 6, 8, 10, 12, 14, 15, 16,
 
 
 
-float timeToNextNote = 60;  // the time until the first note
-float timeElapsed = 0;      // how much time has passed since the program has started. This will be subtracted from the array of timing for the song, to tell how much time there is between notes
-int spotInArray = 0;        // this tells us where we are in the array. This is increased by one every time a note is dropped.
+float timeToNextNote;  // the time until the first note
+float timeElapsed;      // how much time has passed since the program has started. This will be subtracted from the array of timing for the song, to tell how much time there is between notes
+int spotInArray;        // this tells us where we are in the array. This is increased by one every time a note is dropped.
 
 Player player1;             // objects for the player controllers
 Player player2;
 
 void setup(){
+  
+  frameRate(30);
   
   size(1280, 1024);
   
@@ -61,7 +64,7 @@ void setup(){
   
   for (int i = song1Array.length - 1; i >= 0; i--){      // this for loop goes through every spot in the array, and changes the array from seconds to frames, which is easier for processing to handle
     //print(song1Array[i] + "    " );
-    song1Array[i] = (song1Array[i] * 60) - 60;
+    song1Array[i] = (song1Array[i] * 30) - 60;
     //print(song1Array[i] + "   ");
   }
   
@@ -86,6 +89,11 @@ void draw(){
       
       //println(player1.score + "   " + player2.score);
       if (oneTimeThrough){
+        fill(240);
+        rectMode(CENTER);
+        noStroke();
+        rect(175, 290, 240, 150);
+        rect(width - 175, 290, 240, 150);
         fill(0);
         textSize(75);
         textAlign(CENTER);
@@ -133,10 +141,10 @@ void draw(){
       
     }
     
-    loudness = 1 - amp.analyze();
+    //loudness = 1 - amp.analyze();
     //println(loudness);
     
-    //testingFunction();
+    test2 = testingFunction();
     
     cooldown(player1.button1Cooldown, player1);      // this section adds a "miss" cooldown for the button. The player is penalized when they don't successfuly capture a note,
     cooldown(player1.button2Cooldown, player1);      // but there's a cooldown, so they don't lose points every frame the button is pressed down
@@ -249,7 +257,7 @@ void cooldown(float c, Player x){    // this function keeps track of the button 
 
 void setUpGame(String song){      // this sets up the game
     
-    timeToNextNote = 60;     // this resets all the variables to start the game
+    timeToNextNote = 0;     // this resets all the variables to start the game
     timeElapsed = 0;     
     spotInArray = 0;    
     
@@ -282,17 +290,17 @@ float testingFunction(){    // this was used to check if things were working, wh
     float c = 0;
   
     fill(0);
-    text(loudness, 100, 100);
+    //text(loudness, 100, 100);
     
     // note reference song
     fill(loudness * 500);
-    rect(100, 100, 300, 300);
+    //rect(100, 100, 300, 300);
     
     
     if (loudness > .8){
       
-      println(test);
-      println(file.positionFrame());
+      //println(test);
+      //println(file.positionFrame());
       test ++;
     
     }

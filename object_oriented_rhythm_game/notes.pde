@@ -5,6 +5,8 @@ class Notes{
   int whichPlayer;
   int column;
   boolean toBeDeleted = false;
+  float r;
+  float t;
   
   PVector size = new PVector (30, 30);
 
@@ -15,6 +17,8 @@ class Notes{
     speed = s;
     column = x;
     //println(column);
+    r = spotInArray;
+    t = song1Array[spotInArray];
     
     if (whichPlayer == 1){
       pos = new PVector((x * 200) - 80, 0);      // the note will start in a different spot for each player
@@ -38,6 +42,8 @@ class Notes{
     fill(0, 0, 0, 100);
     image(noteImage, pos.x - 15, pos.y - 60, 60, 80);    // displays the actual image of the note
     //ellipse(pos.x, pos.y, size.x, size.y);      // display it on the screen
+    //text(r + "  " + t, pos.x - 30, pos.y - 80);
+    
 
   
   }
