@@ -1,5 +1,12 @@
 import processing.sound.*;
 
+/*        Credits
+
+          All of the code was written by me, with these exceptions
+            - Some of the code to set up and use the sound library was copied from the processing documentation here - https://processing.org/reference/libraries/sound/index.html
+            - You (Prof. Barry) helped me in class at some points. The code is all my own, but you provided assistance in figuring out some issues, such as further instruction on how to use switch statements. The code is still all my own, but you helped me understand some key ideas.
+
+*/
 SoundFile file;    // the sound file
 Amplitude amp;     // how the sound file is analyzed
 AudioIn in;        // what audio is going into the amplitude
