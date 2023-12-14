@@ -1,0 +1,98 @@
+Skills inventory
+
+This file shows a spot in the code where each skill was used. At the bottom are the answers to the skill inventory questions (which are the same as on the planning sheet)
+
+Shapes
+Basic shapes - "Object Oriented Rhythm Game" line 102
+Shape properties - "Object Oriented Rhythm Game" line 99
+Shape modes - "Object Oriented Rhythm Game" line 106
+
+System
+Setup() and draw() - "Object Oriented Rhythm Game" line 54 and 89
+background(), random(), noise() - "Object Oriented Rhythm Game" line 212
+constrain(), dist() - "collision functions" line 9
+keyPressed(), keyReleased(), etc - "key presses" line 1
+Increment operators - "Object Oriented Rhythm Game" line 184
+Local variables - "Object Oriented Rhythm Game" line 234
+Global variables - "Object Oriented Rhythm Game" line 14
+
+Debugging
+println(), stop() - "Object Oriented Rhythm Game" line 222
+
+Control Flow
+Conditional statements - "Object Oriented Rhythm Game" line 210
+Boolean expressions - "Object Oriented Rhythm Game" line 211
+Logical operators - "Object Oriented Rhythm Game" line 253
+Switch statement  - "ket presses" line 13
+
+Loops
+for/while Loop - "Object Oriented Rhythm Game" line 188
+Nested loop  - "collision functions" line 7 and 15
+break() -  - "key presses" line 17
+
+Functions
+Declare and call with no parameters and no return type - "Object Oriented Rhythm Game" line 208 and 181
+Declare and call with a return type - "Object Oriented Rhythm Game" line 295 and 154
+Declare and use a function that takes a primitive as an argument - "Object Oriented Rhythm Game" line 251 and 156
+Declare and use a function that takes an object as an argument - "Object Oriented Rhythm Game" line 231 and 164
+
+Classes/objects
+Write a class with a constructor function - "notes" line 13 and 1
+Use the keyword new to instantiate an object - "Object Oriented Rhythm Game" line 80
+Write a constructor function with parameters - "notes" line 13
+
+Lists
+Initialize and populate an array - "Object Oriented Rhythm Game" line 36
+Initialize and populate an ArrayList - "Object Oriented Rhythm Game" line 22 and 213
+Manage a set of objects with an array or ArrayList - updateNotes and the collision functions
+Use an ArrayList method - "Object Oriented Rhythm Game" line 243
+
+Vectors
+Use the PVector class - "particles" line 3
+Do basic physics - "particles" line 45-49
+Find the direction and distance between two points - "collision functions" line 23
+Create a random 2d vector - "particles" line 18
+Use a new way to use a PVector - "particles" line 21
+
+Optional
+Switch between game states - "Object Oriented Rhythm Game" line 223
+Use collisions detections between objects - "collisions" all of it
+
+Questions from skill inventory (these will get finished over the course of the project)
+
+19. What’s the difference between a for loop and a while loop?
+
+A “for” loop has all the information for repeating the loop in a single line (local loop variable, what value that variable has to be for the loop to run, and how much that variable will increase every time the loop repeats), while the “while” loop simply checks a boolean expression, and while repeat until that expression returns false.
+
+22. What’s the difference between parameters and arguments?
+
+Parameters are the local variables stored within the function, these are different every time the function is called, and are determined by the arguments that you put in for that given time that you call the function. The parameters go between the parentheses when you create the function, you write the arguments whenever you call it.
+
+25. What’s the difference between a class and an object?
+
+The difference between class and object is kind of similar to the difference between parameter and arguments. A class is like the instructions to create an object, and the object is the actual thing itself. Either thing doesn't make sense without the other, you need the instructions to make something, but you need the thing itself to actually use it.
+
+26. What is a constructor function? What does it do and when?
+
+The constructor function is only called when a new object of that class type is being created. It sets up the object, and (sometimes, but necessarily) uses the arguments that were passed when you made the object. Often, the specific variables for an object are made within the constructor, as the constructor gets called everytime an instance of that object is created, so it’s a good spot to set things up.
+
+27. Why should each class have its own tab in processing?
+
+When each class has its own tab, everything is more organised, which makes reading the code much easier, and finding the source of the problem can be localised more easily. Having a separate tab also differentiates (to whoever's writing the code) what happens within the class, and what happens outside, which is useful when coming across class related problems.
+
+31. What’s the difference between an array and an ArrayList?
+
+An array stores a list of data, which can be anything. An ArrayList is similar to an array, except in an ArrayList, items can be more easily added and removed. I’ve found that arrays are useful for storing large fixed amounts of data, and ArrayLists are useful for storing smaller groups of objects that are being added and removed all the time.
+
+32. Why would you want to go through an array list backwards, decrementing the index?
+
+This gives you more options when manipulating all the items in an array list. Because the amount of objects in an array list changes frequently, and new items are stored at the top, decrementing the index and going through the array list backwards allows you to interact with the most recent objects added to the array list first, which may be what is needed.
+
+37. When should you use PVector instead of float variables?
+
+You should use PVectors whenever you want to store two (or three) related floats, such as the position on a cartesian plane having “x” and “y” coordinates. This can apply to things like position, velocity, acceleration. You can also use PVectors for storing things like width and height, and r g and b values for colour.
+
+42. What is a normalised vector, why is it useful?
+
+A normalised vector is a vector that stores the direction of the original vector, but reduces the magnitude to 1. In programming, this can be useful in determining the distance between two points.
+
